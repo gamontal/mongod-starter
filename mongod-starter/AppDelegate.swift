@@ -18,6 +18,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var DocumentationItem: NSMenuItem!
     @IBOutlet weak var versionMenuItem: NSMenuItem!
     @IBOutlet weak var serverStatusMenuItem: NSMenuItem!
+    @IBOutlet weak var PreferenceWindowItem: NSWindow!
+    
     
     var paths = NSSearchPathForDirectoriesInDomains(
         NSSearchPathDirectory.DocumentDirectory,
@@ -125,9 +127,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
+    @IBAction func openIssues(sender: NSMenuItem) {
+        if let url: NSURL = NSURL(string: "https://github.com/gmontalvoriv/mongod-starter/issues") {
+            NSWorkspace.sharedWorkspace().openURL(url)
+        }
+    }
+    
+    
+    @IBAction func openPreferences(sender: NSMenuItem) {
+        self.PreferenceWindowItem!.orderFront(self)
+    }
+    
     // app launch and termination events
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        
+        self.PreferenceWindowItem!.orderOut(self)
         if let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String? {
             versionMenuItem.title = "mongod-starter v\(version)"
             versionMenuItem.hidden = false
