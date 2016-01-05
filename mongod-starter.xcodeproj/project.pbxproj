@@ -1,0 +1,387 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BE6B119D1C3A379700BBF945 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6B119C1C3A379700BBF945 /* AppDelegate.swift */; };
+		BE6B119F1C3A379700BBF945 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BE6B119E1C3A379700BBF945 /* Assets.xcassets */; };
+		BE6B11A21C3A379700BBF945 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE6B11A01C3A379700BBF945 /* MainMenu.xib */; };
+		BE6B11AD1C3A379700BBF945 /* mongod_starterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE6B11AC1C3A379700BBF945 /* mongod_starterTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BE6B11A91C3A379700BBF945 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BE6B11911C3A379700BBF945 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BE6B11981C3A379700BBF945;
+			remoteInfo = "mongod-starter";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BE6B11991C3A379700BBF945 /* mongod-starter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "mongod-starter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE6B119C1C3A379700BBF945 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BE6B119E1C3A379700BBF945 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BE6B11A11C3A379700BBF945 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		BE6B11A31C3A379700BBF945 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BE6B11A81C3A379700BBF945 /* mongod-starterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "mongod-starterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE6B11AC1C3A379700BBF945 /* mongod_starterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mongod_starterTests.swift; sourceTree = "<group>"; };
+		BE6B11AE1C3A379700BBF945 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BE6B11961C3A379700BBF945 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE6B11A51C3A379700BBF945 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BE6B11901C3A379700BBF945 = {
+			isa = PBXGroup;
+			children = (
+				BE6B119B1C3A379700BBF945 /* mongod-starter */,
+				BE6B11AB1C3A379700BBF945 /* mongod-starterTests */,
+				BE6B119A1C3A379700BBF945 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BE6B119A1C3A379700BBF945 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BE6B11991C3A379700BBF945 /* mongod-starter.app */,
+				BE6B11A81C3A379700BBF945 /* mongod-starterTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BE6B119B1C3A379700BBF945 /* mongod-starter */ = {
+			isa = PBXGroup;
+			children = (
+				BE6B119C1C3A379700BBF945 /* AppDelegate.swift */,
+				BE6B119E1C3A379700BBF945 /* Assets.xcassets */,
+				BE6B11A01C3A379700BBF945 /* MainMenu.xib */,
+				BE6B11A31C3A379700BBF945 /* Info.plist */,
+			);
+			path = "mongod-starter";
+			sourceTree = "<group>";
+		};
+		BE6B11AB1C3A379700BBF945 /* mongod-starterTests */ = {
+			isa = PBXGroup;
+			children = (
+				BE6B11AC1C3A379700BBF945 /* mongod_starterTests.swift */,
+				BE6B11AE1C3A379700BBF945 /* Info.plist */,
+			);
+			path = "mongod-starterTests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BE6B11981C3A379700BBF945 /* mongod-starter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE6B11B11C3A379700BBF945 /* Build configuration list for PBXNativeTarget "mongod-starter" */;
+			buildPhases = (
+				BE6B11951C3A379700BBF945 /* Sources */,
+				BE6B11961C3A379700BBF945 /* Frameworks */,
+				BE6B11971C3A379700BBF945 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "mongod-starter";
+			productName = "mongod-starter";
+			productReference = BE6B11991C3A379700BBF945 /* mongod-starter.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BE6B11A71C3A379700BBF945 /* mongod-starterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE6B11B41C3A379700BBF945 /* Build configuration list for PBXNativeTarget "mongod-starterTests" */;
+			buildPhases = (
+				BE6B11A41C3A379700BBF945 /* Sources */,
+				BE6B11A51C3A379700BBF945 /* Frameworks */,
+				BE6B11A61C3A379700BBF945 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BE6B11AA1C3A379700BBF945 /* PBXTargetDependency */,
+			);
+			name = "mongod-starterTests";
+			productName = "mongod-starterTests";
+			productReference = BE6B11A81C3A379700BBF945 /* mongod-starterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BE6B11911C3A379700BBF945 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Gabriel Montalvo";
+				TargetAttributes = {
+					BE6B11981C3A379700BBF945 = {
+						CreatedOnToolsVersion = 7.0;
+					};
+					BE6B11A71C3A379700BBF945 = {
+						CreatedOnToolsVersion = 7.0;
+						TestTargetID = BE6B11981C3A379700BBF945;
+					};
+				};
+			};
+			buildConfigurationList = BE6B11941C3A379700BBF945 /* Build configuration list for PBXProject "mongod-starter" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BE6B11901C3A379700BBF945;
+			productRefGroup = BE6B119A1C3A379700BBF945 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BE6B11981C3A379700BBF945 /* mongod-starter */,
+				BE6B11A71C3A379700BBF945 /* mongod-starterTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BE6B11971C3A379700BBF945 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE6B119F1C3A379700BBF945 /* Assets.xcassets in Resources */,
+				BE6B11A21C3A379700BBF945 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE6B11A61C3A379700BBF945 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BE6B11951C3A379700BBF945 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE6B119D1C3A379700BBF945 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BE6B11A41C3A379700BBF945 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BE6B11AD1C3A379700BBF945 /* mongod_starterTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BE6B11AA1C3A379700BBF945 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BE6B11981C3A379700BBF945 /* mongod-starter */;
+			targetProxy = BE6B11A91C3A379700BBF945 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BE6B11A01C3A379700BBF945 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BE6B11A11C3A379700BBF945 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BE6B11AF1C3A379700BBF945 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BE6B11B01C3A379700BBF945 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		BE6B11B21C3A379700BBF945 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "mongod-starter/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "gamr.mongod-starter";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		BE6B11B31C3A379700BBF945 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "mongod-starter/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "gamr.mongod-starter";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		BE6B11B51C3A379700BBF945 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "mongod-starterTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "gamr.mongod-starterTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mongod-starter.app/Contents/MacOS/mongod-starter";
+			};
+			name = Debug;
+		};
+		BE6B11B61C3A379700BBF945 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "mongod-starterTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "gamr.mongod-starterTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/mongod-starter.app/Contents/MacOS/mongod-starter";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BE6B11941C3A379700BBF945 /* Build configuration list for PBXProject "mongod-starter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE6B11AF1C3A379700BBF945 /* Debug */,
+				BE6B11B01C3A379700BBF945 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE6B11B11C3A379700BBF945 /* Build configuration list for PBXNativeTarget "mongod-starter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE6B11B21C3A379700BBF945 /* Debug */,
+				BE6B11B31C3A379700BBF945 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		BE6B11B41C3A379700BBF945 /* Build configuration list for PBXNativeTarget "mongod-starterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BE6B11B51C3A379700BBF945 /* Debug */,
+				BE6B11B61C3A379700BBF945 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BE6B11911C3A379700BBF945 /* Project object */;
+}
