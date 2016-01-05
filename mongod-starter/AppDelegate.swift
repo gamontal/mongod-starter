@@ -16,6 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var StopServItem: NSMenuItem!
     @IBOutlet weak var QuitItem: NSMenuItem!
     @IBOutlet weak var DocumentationItem: NSMenuItem!
+    @IBOutlet weak var versionMenuItem: NSMenuItem!
     @IBOutlet weak var serverStatusMenuItem: NSMenuItem!
     
     var paths = NSSearchPathForDirectoriesInDomains(
@@ -126,6 +127,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // app launch and termination events
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        
+        if let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String? {
+            versionMenuItem.title = "mongod-starter v\(version)"
+            versionMenuItem.hidden = false
+        }
+        
         createDataDir() // creates mongodb data source location if it doesn't exist
         createMongoBinDir()
         

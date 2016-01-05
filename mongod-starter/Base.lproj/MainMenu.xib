@@ -19,14 +19,19 @@
                 <outlet property="StopServItem" destination="24L-5C-GEo" id="mQj-8E-gQB"/>
                 <outlet property="serverStatusMenuItem" destination="o4g-5l-DOV" id="Qz8-Q2-VAP"/>
                 <outlet property="statusMenu" destination="2cy-cR-nB7" id="U9M-T2-dcP"/>
+                <outlet property="versionMenuItem" destination="quX-A9-pU1" id="AnW-Ai-eGg"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu id="2cy-cR-nB7">
             <items>
+                <menuItem hidden="YES" enabled="NO" id="quX-A9-pU1">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
                 <menuItem title="Running on Port 27017 " hidden="YES" enabled="NO" id="o4g-5l-DOV">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
+                <menuItem isSeparatorItem="YES" id="cmr-Ws-8pi"/>
                 <menuItem title="Start MongoDB Server" id="eI2-Nw-uVq">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
