@@ -82,13 +82,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if ((!NSFileManager.defaultManager().fileExistsAtPath(self.binPath)) || (!NSFileManager.defaultManager().fileExistsAtPath(self.dataPath))) {
             
             print("--> One of the directories was not found...")
-            alert("An error has ocurred.",information: "Make sure both the binary and data storage paths exist before trying again.")
+            alert("An error has ocurred.", information: "Make sure both the binary and data storage paths exist before trying again.")
             
             return
         } else {
-            
-            self.StartServItem.hidden = true
-            self.StopServItem.hidden = false
             
             let path = self.binPath
         
@@ -101,6 +98,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.serverStatusMenuItem.hidden = false
 
             self.task.launch()
+            
+            self.StartServItem.hidden = true
+            self.StopServItem.hidden = false
         }
     }
     
@@ -168,6 +168,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func openPreferences(sender: NSMenuItem) {
         self.PreferenceWindowItem!.orderFront(self)
+        NSApplication.sharedApplication().activateIgnoringOtherApps(true)
     }
     
     
@@ -218,7 +219,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
 
-    // app launch and termination events
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         
         if customDataDir.stringForKey("defCustomDataDir") != nil {
@@ -250,10 +250,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         QuitItem.action = Selector("terminate:")
     }
     
+    
     func applicationWillTerminate(notification: NSNotification) {
-        if (self.StartServItem.hidden == false) { // If the receiver has not been launched yet, the terminate method raises an NSInvalidArgumentException.
-            return                                // However after going throw the documentation I did not found a way to catch this exception during the execution
-        }                                         // of the stopServer() function. So the item.hidden validation method will have to suffice.
+        if (self.StartServItem.hidden == false) {
+            return
+        }
         stopServer()
     }
 }

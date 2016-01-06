@@ -35,14 +35,12 @@
                 <menuItem title="Running on Port 27017 " hidden="YES" enabled="NO" id="o4g-5l-DOV">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem title="Start MongoDB Server" id="eI2-Nw-uVq">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Start MongoDB Server" keyEquivalent="r" id="eI2-Nw-uVq">
                     <connections>
                         <action selector="startMongoDBServer:" target="Voe-Tx-rLC" id="Qme-pQ-U7Z"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Stop MongoDB Server" hidden="YES" id="24L-5C-GEo">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Stop MongoDB Server" hidden="YES" keyEquivalent="s" id="24L-5C-GEo">
                     <connections>
                         <action selector="StopMongoDBServer:" target="Voe-Tx-rLC" id="532-9z-8h2"/>
                     </connections>
@@ -68,39 +66,36 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="g0F-hg-W7e"/>
-                <menuItem title="Quit" id="3XO-Vt-JMh">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
+                <menuItem title="Quit" keyEquivalent="q" id="3XO-Vt-JMh"/>
             </items>
             <point key="canvasLocation" x="398" y="264.5"/>
         </menu>
-        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="rjV-VU-YPT">
+        <window title="mongod-starter Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="rjV-VU-YPT">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="800" y="600" width="425" height="205"/>
+            <rect key="contentRect" x="800" y="556" width="425" height="321"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="IqX-fq-BrE">
-                <rect key="frame" x="0.0" y="0.0" width="425" height="205"/>
+                <rect key="frame" x="0.0" y="0.0" width="425" height="321"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="txB-vM-IRs">
-                        <rect key="frame" x="23" y="138" width="299" height="22"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="~/mongod-starter/mongodb/bin/mongod" drawsBackground="YES" id="j9e-WC-XiG">
+                        <rect key="frame" x="23" y="254" width="299" height="22"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Required" drawsBackground="YES" id="j9e-WC-XiG">
                             <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" white="0.25310958059210525" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E2R-SN-uLo">
-                        <rect key="frame" x="23" y="64" width="299" height="22"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="~/Documents/MongoData" drawsBackground="YES" id="XLl-iu-Jes">
+                        <rect key="frame" x="23" y="180" width="299" height="22"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Required" drawsBackground="YES" id="XLl-iu-Jes">
                             <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="textColor" white="0.25310958059999999" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fzU-Od-4Pl">
-                        <rect key="frame" x="21" y="168" width="165" height="17"/>
+                        <rect key="frame" x="21" y="284" width="165" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="MongoDB server location:" id="E3c-lG-kyr">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -108,7 +103,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YEF-0b-XPB">
-                        <rect key="frame" x="21" y="94" width="205" height="17"/>
+                        <rect key="frame" x="21" y="210" width="205" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="MongoDB data storage location:" id="LZ2-1g-p4F">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -116,7 +111,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eM8-Bl-VlB">
-                        <rect key="frame" x="324" y="58" width="87" height="32"/>
+                        <rect key="frame" x="324" y="174" width="87" height="32"/>
                         <buttonCell key="cell" type="push" title="Browse" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WYw-SZ-e5a">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -129,7 +124,7 @@ DQ
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p3p-je-ss8">
-                        <rect key="frame" x="324" y="132" width="87" height="32"/>
+                        <rect key="frame" x="324" y="248" width="87" height="32"/>
                         <buttonCell key="cell" type="push" title="Browse" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RKD-mv-GOq">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -141,6 +136,38 @@ DQ
                             <action selector="browseBinDir:" target="Voe-Tx-rLC" id="Ts6-tC-8Kn"/>
                         </connections>
                     </button>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="saD-nV-RiQ">
+                        <rect key="frame" x="23" y="89" width="299" height="22"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Optional" drawsBackground="YES" id="I20-Be-Ryi">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" white="0.25310958059999999" alpha="1" colorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="svn-CJ-0MU">
+                        <rect key="frame" x="21" y="119" width="218" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="mongod configuration file location:" id="BHE-uq-TGR">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oqd-og-CBi">
+                        <rect key="frame" x="324" y="83" width="87" height="32"/>
+                        <buttonCell key="cell" type="push" title="Browse" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lpp-zH-xR5">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                            <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                        </buttonCell>
+                    </button>
+                    <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="RFA-Jw-j3G">
+                        <rect key="frame" x="23" y="153" width="382" height="5"/>
+                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <font key="titleFont" metaFont="system"/>
+                    </box>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HSG-mj-cY9">
                         <rect key="frame" x="284" y="13" width="127" height="32"/>
                         <buttonCell key="cell" type="push" title="Save changes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SyR-z8-nYL">
@@ -153,7 +180,7 @@ DQ
                     </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="365.5" y="575.5"/>
+            <point key="canvasLocation" x="359.5" y="638.5"/>
         </window>
     </objects>
 </document>
