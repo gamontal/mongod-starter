@@ -19,7 +19,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var versionMenuItem: NSMenuItem!
     @IBOutlet weak var serverStatusMenuItem: NSMenuItem!
     @IBOutlet weak var PreferenceWindowItem: NSWindow!
+    @IBOutlet weak var customBinTextfield: NSTextField!
+    @IBOutlet weak var customDataTextfield: NSTextField!
     
+    let customBinDir = NSUserDefaults.standardUserDefaults()
+    let customDataDir = NSUserDefaults.standardUserDefaults()
     
     var paths = NSSearchPathForDirectoriesInDomains(
         NSSearchPathDirectory.DocumentDirectory,
@@ -28,6 +32,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var documentsDirectory: AnyObject
     var dataPath: String
     var binPath: String
+    var appPath: String  // mongod-starter folder in Documents
+    var logPath: String
     var task: NSTask = NSTask()
     var pipe: NSPipe = NSPipe()
     var file: NSFileHandle
@@ -37,8 +43,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     override init() {
         self.file = self.pipe.fileHandleForReading
         self.documentsDirectory = self.paths[0]
-        self.dataPath = documentsDirectory.stringByAppendingPathComponent("MongoData")
-        self.binPath = "\(NSHomeDirectory())/mongod-starter"
+        self.appPath = documentsDirectory.stringByAppendingPathComponent("mongod-starter")
+        self.logPath = documentsDirectory.stringByAppendingPathComponent("mongod-starter/Logs")
+        
+        if customDataDir.stringForKey("defCustomDataDir") != nil {
+            self.dataPath = customDataDir.stringForKey("defCustomDataDir")!
+        } else {
+            self.dataPath = ""
+        }
+        
+        if customBinDir.stringForKey("defCustomBinDir") != nil {
+            let daemon: String = "/mongod"
+            self.binPath = customBinDir.stringForKey("defCustomBinDir")! + daemon
+        } else {
+            
+            self.binPath = ""
+        }
         
         super.init()
     }
@@ -48,17 +68,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.task = NSTask()
         self.pipe = NSPipe()
         self.file = self.pipe.fileHandleForReading
-    
-        let path = "\(NSHomeDirectory())/mongod-starter/mongodb/bin/mongod"
         
-        if (!NSFileManager.defaultManager().fileExistsAtPath(self.binPath)) {
-            print("bin directory not found...")
+        if ((!NSFileManager.defaultManager().fileExistsAtPath(self.binPath)) || (!NSFileManager.defaultManager().fileExistsAtPath(self.dataPath))) {
+            print("--> One of the directories was not found...")
             return
         } else {
+            
+            self.StartServItem.hidden = true
+            self.StopServItem.hidden = false
+            
+            let path = self.binPath
         
             self.task.launchPath = path
     
-            self.task.arguments = ["--dbpath", self.dataPath, "--nounixsocket"]
+            self.task.arguments = ["--dbpath", self.dataPath, "--nounixsocket", "--logpath", "\(self.logPath)/mongo.log"]
             self.task.standardOutput = self.pipe
     
             print("-> mongod is running...")
@@ -74,6 +97,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         task.terminate()
         
+        self.serverStatusMenuItem.hidden = true
+        self.StartServItem.hidden = false
+        self.StopServItem.hidden = true
+        
         let data: NSData = self.file.readDataToEndOfFile()
         self.file.closeFile()
     
@@ -81,51 +108,43 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         print(output)
     }
     
-    func createMongoBinDir() {
-        if (!NSFileManager.defaultManager().fileExistsAtPath(self.binPath)) {
+    func createAppDirectories() {
+        
+        if (!NSFileManager.defaultManager().fileExistsAtPath(self.appPath)) {
             do {
-                try NSFileManager.defaultManager().createDirectoryAtPath(self.binPath,
-                    withIntermediateDirectories: false, attributes: nil)
+                try NSFileManager.defaultManager().createDirectoryAtPath(self.appPath, withIntermediateDirectories: false, attributes: nil)
             } catch {
-                print("An error has occurred. Bin directory was not created.")
+                print("--> Failed creating the log directory...")
             }
         }
-        print("Mongo binaries directory: \(self.binPath)")
-    }
-    
-    func createDataDir() {
-        if (!NSFileManager.defaultManager().fileExistsAtPath(self.dataPath)) {
+        
+        if (!NSFileManager.defaultManager().fileExistsAtPath(self.logPath)) {
             do {
-                try NSFileManager.defaultManager().createDirectoryAtPath(self.dataPath,
-                    withIntermediateDirectories: false, attributes: nil)
+                try NSFileManager.defaultManager().createDirectoryAtPath(self.logPath, withIntermediateDirectories: false, attributes: nil)
             } catch {
-                print("An error has occurred. Data directory was not created.")
+                print("--> Failed creating the log directory...")
             }
         }
-        print("Mongo data directory: \(self.dataPath)")
+        print("mongod-starter path: \(self.appPath)")
+        print("mongod-starter log path: \(self.logPath)")
     }
     
     // Item actions
     @IBAction func startMongoDBServer(sender: NSMenuItem) {
-        self.StartServItem.hidden = true
-        self.StopServItem.hidden = false
-        
         startServer()
     }
     
     @IBAction func StopMongoDBServer(sender: NSMenuItem) {
-        self.serverStatusMenuItem.hidden = true
-        self.StartServItem.hidden = false
-        self.StopServItem.hidden = true
-        
         stopServer()
     }
+    
     
     @IBAction func openDoc(sender: NSMenuItem) {
         if let url: NSURL = NSURL(string: "https://github.com/gmontalvoriv/mongod-starter") {
             NSWorkspace.sharedWorkspace().openURL(url)
         }
     }
+    
     
     @IBAction func openIssues(sender: NSMenuItem) {
         if let url: NSURL = NSURL(string: "https://github.com/gmontalvoriv/mongod-starter/issues") {
@@ -138,16 +157,70 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.PreferenceWindowItem!.orderFront(self)
     }
     
+    
+    func getDir(canChooseFiles: Bool, canChooseDirectories: Bool) -> String {
+        let browser: NSOpenPanel = NSOpenPanel()
+            
+        browser.allowsMultipleSelection = false
+        browser.canChooseFiles = canChooseFiles
+        browser.canChooseDirectories = canChooseDirectories
+            
+        browser.runModal()
+            
+        let url = browser.URL
+        let path: String
+        
+        if (url != nil) {
+            path = url!.path!
+        } else {
+            path = ""
+        }
+            
+        if (path != "") {
+            return path
+        } else {
+            return ""
+        }
+    }
+    
+    
+    @IBAction func browseBinDir(sender: NSButton) {
+        customBinTextfield.stringValue = getDir(false, canChooseDirectories: true)
+    }
+    
+    
+    @IBAction func browseDataDir(sender: NSButton) {
+        customDataTextfield.stringValue = getDir(false, canChooseDirectories: true)
+    }
+    
+    
+    @IBAction func SaveChanges(sender: NSButton) {
+        customBinDir.setObject(customBinTextfield.stringValue, forKey: "defCustomBinDir")
+        customDataDir.setObject(customDataTextfield.stringValue, forKey: "defCustomDataDir")
+        PreferenceWindowItem.close()
+    }
+    
+
     // app launch and termination events
     func applicationDidFinishLaunching(aNotification: NSNotification) {
+        
+        if customDataDir.stringForKey("defCustomDataDir") != nil {
+            let customDataDirectory = customDataDir.stringForKey("defCustomDataDir")!
+            customDataTextfield.stringValue = customDataDirectory
+        }
+        
+        if customBinDir.stringForKey("defCustomBinDir") != nil {
+            let customBinDirectory = customBinDir.stringForKey("defCustomBinDir")!
+            customBinTextfield.stringValue = customBinDirectory
+        }
+        
         self.PreferenceWindowItem!.orderOut(self)
         if let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String? {
             versionMenuItem.title = "mongod-starter v\(version)"
             versionMenuItem.hidden = false
         }
         
-        createDataDir() // creates mongodb data source location if it doesn't exist
-        createMongoBinDir()
+        createAppDirectories()
         
         let icon = NSImage(named: "statusIcon")
         icon!.size = NSSize(width: 20, height: 16)
