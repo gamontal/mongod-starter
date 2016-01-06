@@ -37,7 +37,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var task: NSTask = NSTask()
     var pipe: NSPipe = NSPipe()
     var file: NSFileHandle
-
+    let mongodFile: String = "/mongod"
+    
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     
     override init() {
@@ -53,8 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         if customBinDir.stringForKey("defCustomBinDir") != nil {
-            let daemon: String = "/mongod"
-            self.binPath = customBinDir.stringForKey("defCustomBinDir")! + daemon
+            self.binPath = customBinDir.stringForKey("defCustomBinDir")! + mongodFile
         } else {
             
             self.binPath = ""
@@ -63,6 +63,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         super.init()
     }
     
+    
+    func alert(message: String, information: String) {
+        let alert = NSAlert()
+        alert.messageText = message
+        alert.informativeText = information
+
+        alert.runModal()
+    }
+    
+    
     // Start MongoDB server
     func startServer() {
         self.task = NSTask()
@@ -70,7 +80,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.file = self.pipe.fileHandleForReading
         
         if ((!NSFileManager.defaultManager().fileExistsAtPath(self.binPath)) || (!NSFileManager.defaultManager().fileExistsAtPath(self.dataPath))) {
+            
             print("--> One of the directories was not found...")
+            alert("An error has ocurred.",information: "Make sure both the binary and data storage paths exist before trying again.")
+            
             return
         } else {
             
@@ -197,6 +210,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func SaveChanges(sender: NSButton) {
         customBinDir.setObject(customBinTextfield.stringValue, forKey: "defCustomBinDir")
         customDataDir.setObject(customDataTextfield.stringValue, forKey: "defCustomDataDir")
+        
+        self.binPath = customBinDir.stringForKey("defCustomBinDir")! + mongodFile
+        self.dataPath = customDataDir.stringForKey("defCustomDataDir")!
+        
         PreferenceWindowItem.close()
     }
     

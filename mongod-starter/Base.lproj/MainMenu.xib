@@ -31,10 +31,10 @@
                 <menuItem hidden="YES" enabled="NO" id="quX-A9-pU1">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
+                <menuItem isSeparatorItem="YES" id="cmr-Ws-8pi"/>
                 <menuItem title="Running on Port 27017 " hidden="YES" enabled="NO" id="o4g-5l-DOV">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="cmr-Ws-8pi"/>
                 <menuItem title="Start MongoDB Server" id="eI2-Nw-uVq">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -77,15 +77,15 @@
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="rjV-VU-YPT">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="800" y="600" width="418" height="205"/>
+            <rect key="contentRect" x="800" y="600" width="425" height="205"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="IqX-fq-BrE">
-                <rect key="frame" x="0.0" y="0.0" width="418" height="205"/>
+                <rect key="frame" x="0.0" y="0.0" width="425" height="205"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="txB-vM-IRs">
                         <rect key="frame" x="23" y="138" width="299" height="22"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="~/mongod-starter/mongodb/bin/mongod" drawsBackground="YES" id="j9e-WC-XiG">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="~/mongod-starter/mongodb/bin/mongod" drawsBackground="YES" id="j9e-WC-XiG">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -93,7 +93,7 @@
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E2R-SN-uLo">
                         <rect key="frame" x="23" y="64" width="299" height="22"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="~/Documents/MongoData" drawsBackground="YES" id="XLl-iu-Jes">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="~/Documents/MongoData" drawsBackground="YES" id="XLl-iu-Jes">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -153,7 +153,7 @@ DQ
                     </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="362" y="575.5"/>
+            <point key="canvasLocation" x="365.5" y="575.5"/>
         </window>
     </objects>
 </document>
