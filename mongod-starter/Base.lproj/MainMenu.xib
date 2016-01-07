@@ -46,7 +46,13 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="Kw3-m7-IoI"/>
-                <menuItem title="Documentation" id="var-CV-8vV">
+                <menuItem title="About" id="79H-hv-rTC">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="openAbout:" target="Voe-Tx-rLC" id="NDz-Rc-IFc"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Documentation..." id="var-CV-8vV">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="openDoc:" target="Voe-Tx-rLC" id="eG2-dF-qdY"/>

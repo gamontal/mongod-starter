@@ -215,6 +215,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         preferencesWindow.close()
     }
     
+    @IBAction func openAbout(sender: NSMenuItem) {
+        NSApplication.sharedApplication().orderFrontStandardAboutPanel(sender)
+    }
+    
     @IBAction func openDoc(sender: NSMenuItem) {
         if let url: NSURL = NSURL(string: "https://github.com/gmontalvoriv/mongod-starter") {
             NSWorkspace.sharedWorkspace().openURL(url)
