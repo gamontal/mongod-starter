@@ -18,6 +18,7 @@
                 <outlet property="QuitItem" destination="3XO-Vt-JMh" id="NnG-Ds-TJp"/>
                 <outlet property="StartServItem" destination="eI2-Nw-uVq" id="9Hv-4n-rY2"/>
                 <outlet property="StopServItem" destination="24L-5C-GEo" id="mQj-8E-gQB"/>
+                <outlet property="configFileTextfield" destination="saD-nV-RiQ" id="GIM-P6-z79"/>
                 <outlet property="customBinTextfield" destination="txB-vM-IRs" id="yab-93-k5p"/>
                 <outlet property="customDataTextfield" destination="E2R-SN-uLo" id="gHV-Fo-wFO"/>
                 <outlet property="serverStatusMenuItem" destination="o4g-5l-DOV" id="Qz8-Q2-VAP"/>
@@ -46,8 +47,7 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="ZXl-5L-hJz"/>
-                <menuItem title="Preferences..." id="okb-Nm-B0D">
-                    <modifierMask key="keyEquivalentModifierMask"/>
+                <menuItem title="Preferences..." keyEquivalent="," id="okb-Nm-B0D">
                     <connections>
                         <action selector="openPreferences:" target="Voe-Tx-rLC" id="Eij-6Q-BfE"/>
                     </connections>
@@ -66,7 +66,9 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="g0F-hg-W7e"/>
-                <menuItem title="Quit" keyEquivalent="q" id="3XO-Vt-JMh"/>
+                <menuItem title="Quit" id="3XO-Vt-JMh">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                </menuItem>
             </items>
             <point key="canvasLocation" x="398" y="264.5"/>
         </menu>
@@ -138,7 +140,7 @@ DQ
                     </button>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="saD-nV-RiQ">
                         <rect key="frame" x="23" y="89" width="299" height="22"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Optional" drawsBackground="YES" id="I20-Be-Ryi">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Optional" drawsBackground="YES" id="I20-Be-Ryi">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" white="0.25310958059999999" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -161,6 +163,9 @@ DQ
 DQ
 </string>
                         </buttonCell>
+                        <connections>
+                            <action selector="browseConfigDir:" target="Voe-Tx-rLC" id="YV5-cG-2VN"/>
+                        </connections>
                     </button>
                     <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="RFA-Jw-j3G">
                         <rect key="frame" x="23" y="153" width="382" height="5"/>

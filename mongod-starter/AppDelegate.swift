@@ -21,9 +21,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var PreferenceWindowItem: NSWindow!
     @IBOutlet weak var customBinTextfield: NSTextField!
     @IBOutlet weak var customDataTextfield: NSTextField!
+    @IBOutlet weak var configFileTextfield: NSTextField!
     
     let customBinDir = NSUserDefaults.standardUserDefaults()
     let customDataDir = NSUserDefaults.standardUserDefaults()
+    let configFileDir = NSUserDefaults.standardUserDefaults()
     
     var paths = NSSearchPathForDirectoriesInDomains(
         NSSearchPathDirectory.DocumentDirectory,
@@ -34,6 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var binPath: String
     var appPath: String  // mongod-starter folder in Documents
     var logPath: String
+    var configPath: String
     var task: NSTask = NSTask()
     var pipe: NSPipe = NSPipe()
     var file: NSFileHandle
@@ -60,6 +63,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.binPath = ""
         }
         
+        if configFileDir.stringForKey("configFileDir") != nil {
+            self.configPath = configFileDir.stringForKey("configFileDir")!
+        } else {
+            self.configPath = ""
+        }
+        
         super.init()
     }
     
@@ -71,6 +80,31 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         alert.runModal()
     }
+    
+    // TESTING
+    func getPort() -> String? {
+        let configPath = self.configPath
+        
+        do {
+            let content = try String(contentsOfFile: configPath, encoding: NSUTF8StringEncoding)
+            let contentArray = content.componentsSeparatedByString("\n")
+            
+            for (_, element) in contentArray.enumerate() {
+                let lineContent = element.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                if ((lineContent.rangeOfString("port") != nil) || (lineContent.rangeOfString("Port") != nil)) {
+                    
+                    if let port = lineContent.componentsSeparatedByString(":").last {
+                        return port.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                    }
+                }
+            }
+            
+        } catch _ as NSError {
+            return nil
+        }
+        return nil
+    }
+    ////
     
     
     // Start MongoDB server
@@ -90,11 +124,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let path = self.binPath
         
             self.task.launchPath = path
-    
-            self.task.arguments = ["--dbpath", self.dataPath, "--nounixsocket", "--logpath", "\(self.logPath)/mongo.log"]
+            
+            
+            // check port here
+            
+            if (!NSFileManager.defaultManager().fileExistsAtPath(self.configPath)) {
+                
+                self.task.arguments = ["--dbpath", self.dataPath, "--nounixsocket", "--logpath", "\(self.logPath)/mongo.log"]
+                
+            } else {
+                
+                if let port = getPort() {
+                    self.serverStatusMenuItem.title = "Running on Port \(port)"
+                }
+                
+                self.task.arguments = ["--dbpath", self.dataPath, "--nounixsocket", "--config", self.configPath]
+            }
+            
             self.task.standardOutput = self.pipe
     
             print("-> mongod is running...")
+
             self.serverStatusMenuItem.hidden = false
 
             self.task.launch()
@@ -208,12 +258,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
+    @IBAction func browseConfigDir(sender: NSButton) {
+        configFileTextfield.stringValue = getDir(true, canChooseDirectories: false)
+    }
+    
+    
     @IBAction func SaveChanges(sender: NSButton) {
         customBinDir.setObject(customBinTextfield.stringValue, forKey: "defCustomBinDir")
         customDataDir.setObject(customDataTextfield.stringValue, forKey: "defCustomDataDir")
+        configFileDir.setObject(configFileTextfield.stringValue, forKey: "configFileDir")
         
         self.binPath = customBinDir.stringForKey("defCustomBinDir")! + mongodFile
         self.dataPath = customDataDir.stringForKey("defCustomDataDir")!
+        self.configPath = configFileDir.stringForKey("configFileDir")!
         
         PreferenceWindowItem.close()
     }
@@ -229,6 +286,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if customBinDir.stringForKey("defCustomBinDir") != nil {
             let customBinDirectory = customBinDir.stringForKey("defCustomBinDir")!
             customBinTextfield.stringValue = customBinDirectory
+        }
+        
+        if configFileDir.stringForKey("configFileDir") != nil {
+            let configFileDirectory = configFileDir.stringForKey("configFileDir")!
+            configFileTextfield.stringValue = configFileDirectory
         }
         
         self.PreferenceWindowItem!.orderOut(self)
