@@ -36,14 +36,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     override init() {
         self.file = self.pipe.fileHandleForReading
         
-        if defDataDir.stringForKey("defCustomDataDir") != nil {
-            self.dataPath = defDataDir.stringForKey("defCustomDataDir")!
+        if defDataDir.stringForKey("defDataDir") != nil {
+            self.dataPath = defDataDir.stringForKey("defDataDir")!
         } else {
             self.dataPath = ""
         }
         
-        if defBinDir.stringForKey("defCustomBinDir") != nil {
-            self.binPath = defBinDir.stringForKey("defCustomBinDir")! + mongodFile
+        if defBinDir.stringForKey("defBinDir") != nil {
+            self.binPath = defBinDir.stringForKey("defBinDir")! + mongodFile
         } else {
             self.binPath = ""
         }
@@ -204,12 +204,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func savePrefChanges(sender: NSButton) {
-        defBinDir.setObject(binPathTextfield.stringValue, forKey: "defCustomBinDir")
-        defDataDir.setObject(dataStoreTextfield.stringValue, forKey: "defCustomDataDir")
+        defBinDir.setObject(binPathTextfield.stringValue, forKey: "defBinDir")
+        defDataDir.setObject(dataStoreTextfield.stringValue, forKey: "defDataDir")
         configFileDir.setObject(configFileTextfield.stringValue, forKey: "configFileDir")
         
-        self.binPath = defBinDir.stringForKey("defCustomBinDir")! + mongodFile
-        self.dataPath = defDataDir.stringForKey("defCustomDataDir")!
+        self.binPath = defBinDir.stringForKey("defBinDir")! + mongodFile
+        self.dataPath = defDataDir.stringForKey("defDataDir")!
         self.configPath = configFileDir.stringForKey("configFileDir")!
         
         preferencesWindow.close()
@@ -236,13 +236,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         self.preferencesWindow!.orderOut(self)
         
-        if defDataDir.stringForKey("defCustomDataDir") != nil {
-            let customDataDirectory = defDataDir.stringForKey("defCustomDataDir")!
+        if defDataDir.stringForKey("defDataDir") != nil {
+            let customDataDirectory = defDataDir.stringForKey("defDataDir")!
             dataStoreTextfield.stringValue = customDataDirectory
         }
         
-        if defBinDir.stringForKey("defCustomBinDir") != nil {
-            let customBinDirectory = defBinDir.stringForKey("defCustomBinDir")!
+        if defBinDir.stringForKey("defBinDir") != nil {
+            let customBinDirectory = defBinDir.stringForKey("defBinDir")!
             binPathTextfield.stringValue = customBinDirectory
         }
         
