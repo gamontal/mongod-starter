@@ -13,37 +13,30 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="mongod_starter" customModuleProvider="target">
             <connections>
-                <outlet property="DocumentationItem" destination="var-CV-8vV" id="W27-8n-Vnz"/>
-                <outlet property="PreferenceWindowItem" destination="rjV-VU-YPT" id="7s8-lH-msb"/>
-                <outlet property="QuitItem" destination="3XO-Vt-JMh" id="NnG-Ds-TJp"/>
-                <outlet property="StartServItem" destination="eI2-Nw-uVq" id="9Hv-4n-rY2"/>
-                <outlet property="StopServItem" destination="24L-5C-GEo" id="mQj-8E-gQB"/>
+                <outlet property="binPathTextfield" destination="txB-vM-IRs" id="Kab-46-ZG6"/>
                 <outlet property="configFileTextfield" destination="saD-nV-RiQ" id="GIM-P6-z79"/>
-                <outlet property="customBinTextfield" destination="txB-vM-IRs" id="yab-93-k5p"/>
-                <outlet property="customDataTextfield" destination="E2R-SN-uLo" id="gHV-Fo-wFO"/>
+                <outlet property="dataStoreTextfield" destination="E2R-SN-uLo" id="1UA-GV-zzP"/>
+                <outlet property="preferencesWindow" destination="rjV-VU-YPT" id="pR6-v5-IKD"/>
                 <outlet property="serverStatusMenuItem" destination="o4g-5l-DOV" id="Qz8-Q2-VAP"/>
+                <outlet property="startServerMenuItem" destination="eI2-Nw-uVq" id="tYA-U1-kaw"/>
                 <outlet property="statusMenu" destination="2cy-cR-nB7" id="U9M-T2-dcP"/>
-                <outlet property="versionMenuItem" destination="quX-A9-pU1" id="AnW-Ai-eGg"/>
+                <outlet property="stopServerMenuItem" destination="24L-5C-GEo" id="UGN-aI-Ew0"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu id="2cy-cR-nB7">
             <items>
-                <menuItem hidden="YES" enabled="NO" id="quX-A9-pU1">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="cmr-Ws-8pi"/>
                 <menuItem title="Running on Port 27017 " hidden="YES" enabled="NO" id="o4g-5l-DOV">
                     <modifierMask key="keyEquivalentModifierMask"/>
                 </menuItem>
                 <menuItem title="Start MongoDB Server" keyEquivalent="r" id="eI2-Nw-uVq">
                     <connections>
-                        <action selector="startMongoDBServer:" target="Voe-Tx-rLC" id="Qme-pQ-U7Z"/>
+                        <action selector="startServer:" target="Voe-Tx-rLC" id="AuL-Km-AOB"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Stop MongoDB Server" hidden="YES" keyEquivalent="s" id="24L-5C-GEo">
                     <connections>
-                        <action selector="StopMongoDBServer:" target="Voe-Tx-rLC" id="532-9z-8h2"/>
+                        <action selector="stopServer:" target="Voe-Tx-rLC" id="5vV-6f-sc5"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="ZXl-5L-hJz"/>
@@ -68,6 +61,9 @@
                 <menuItem isSeparatorItem="YES" id="g0F-hg-W7e"/>
                 <menuItem title="Quit" id="3XO-Vt-JMh">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="quit:" target="Voe-Tx-rLC" id="oD6-Cm-CQ2"/>
+                    </connections>
                 </menuItem>
             </items>
             <point key="canvasLocation" x="398" y="264.5"/>
@@ -180,7 +176,7 @@ DQ
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="SaveChanges:" target="Voe-Tx-rLC" id="q8l-fF-Ffn"/>
+                            <action selector="savePrefChanges:" target="Voe-Tx-rLC" id="byf-xX-UMZ"/>
                         </connections>
                     </button>
                 </subviews>
