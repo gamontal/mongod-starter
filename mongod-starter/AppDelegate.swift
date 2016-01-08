@@ -259,8 +259,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         icon!.size = NSSize(width: 20, height: 16)
         icon?.template = true
-
         statusItem.image = icon
+        
         statusItem.menu = statusMenu
     }
     
