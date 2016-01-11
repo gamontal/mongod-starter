@@ -65,9 +65,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.file = self.pipe.fileHandleForReading
         
         if ((!NSFileManager.defaultManager().fileExistsAtPath(self.binPath)) || (!NSFileManager.defaultManager().fileExistsAtPath(self.dataPath))) {
-            print("--> ERROR: INVALID PATH IN USERDEFAULTS")
+            print("--> ERROR: Invalid path in UserDefaults")
             
-            alert("ERROR: INVALID PATH", information: "MongoDB server and data storage locations are required. Go to preferences.")
+            alert("ERROR: Invalid path", information: "MongoDB server and data storage locations are required. Go to Preferences.")
             
             return
             
