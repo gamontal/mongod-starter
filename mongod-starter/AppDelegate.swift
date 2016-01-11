@@ -247,13 +247,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     // login item change actions
     @IBAction func startupLaunch(sender: NSButton) {
-       // let appURL: CFURLRef = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath)
+       /*let appURL: CFURLRef = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath)
         
         if startupCheckBox.state == NSOnState {
             
         } else if startupCheckBox.state == NSOffState {
             
         }
+        */
     }
     
     
@@ -277,11 +278,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         let icon = NSImage(named: "statusIcon")
-        
-        icon!.size = NSSize(width: 20, height: 16)
         icon?.template = true
-        statusItem.image = icon
         
+        statusItem.image = icon
         statusItem.menu = statusMenu
     }
     
