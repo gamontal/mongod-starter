@@ -20,6 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var binPathTextfield: NSTextField!
     @IBOutlet weak var dataStoreTextfield: NSTextField!
     @IBOutlet weak var configFileTextfield: NSTextField!
+    @IBOutlet weak var startupCheckBox: NSButton!
     
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     let defBinDir = NSUserDefaults.standardUserDefaults()
@@ -166,6 +167,59 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return nil
     }
     
+    func getLoginItems() -> LSSharedFileList? {
+        let allocator: CFAllocator! = CFAllocatorGetDefault().takeUnretainedValue()
+        let kLoginItems: CFString! = kLSSharedFileListSessionLoginItems.takeUnretainedValue()
+        let loginItems_ = LSSharedFileListCreate(allocator, kLoginItems, nil)
+        if loginItems_ == nil {return nil}
+        let loginItems: LSSharedFileList! = loginItems_.takeRetainedValue()
+        return loginItems
+    }
+    
+    // login item add functions
+    func existingItem(itemURL: NSURL) -> LSSharedFileListItem? {
+        let loginItems_ = getLoginItems()
+        if loginItems_ == nil {return nil}
+        let loginItems = loginItems_!
+        
+        var seed : UInt32 = 0
+        let currentItems = LSSharedFileListCopySnapshot(loginItems, &seed).takeRetainedValue() as NSArray
+        
+        for item in currentItems {
+            let resolutionFlags: UInt32 = UInt32(kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes)
+            let url = LSSharedFileListItemCopyResolvedURL(item as! LSSharedFileListItem, resolutionFlags, nil).takeRetainedValue() as NSURL
+            if url.isEqual(itemURL) {
+                let result = item as! LSSharedFileListItem
+                return result
+            }
+        }
+        
+        return nil
+    }
+    
+    func willLaunchAtLogin(itemURL : NSURL) -> Bool {
+        return existingItem(itemURL) != nil
+    }
+    
+    func setLaunchAtLogin(itemURL: NSURL, enabled: Bool) -> Bool {
+        let loginItems_ = getLoginItems()
+        if loginItems_ == nil {return false}
+        let loginItems = loginItems_!
+        
+        let item = existingItem(itemURL)
+        if item != nil && enabled {return true}
+        if item != nil && !enabled {
+            LSSharedFileListItemRemove(loginItems, item)
+            print("mongod-starter will not launch at login")
+            return true
+        }
+        
+        LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst.takeUnretainedValue(), nil, nil, itemURL as CFURL, nil, nil)
+        print("mongod-starter will launch at login")
+        return true
+    }
+    //
+    
     // wraps NSAlert() methods
     func alert(message: String, information: String) {
         let alert = NSAlert()
@@ -233,6 +287,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func quit(sender: NSMenuItem) {
         NSApplication.sharedApplication().terminate(sender)
+    }
+    
+    // login item change actions
+    @IBAction func startupLaunch(sender: NSButton) {
+        let appURL: CFURLRef = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath)
+        
+        if startupCheckBox.state == NSOnState {
+            if willLaunchAtLogin(appURL) {
+                setLaunchAtLogin(appURL, enabled: true)
+            }
+        } else if startupCheckBox.state == NSOffState {
+            if willLaunchAtLogin(appURL) {
+                setLaunchAtLogin(appURL, enabled: false)
+            }
+        }
     }
     
     
