@@ -79,12 +79,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             if (!NSFileManager.defaultManager().fileExistsAtPath(self.configPath)) {
                 self.task.arguments = ["--dbpath", self.dataPath, "--nounixsocket"]
             } else {
-    
+                self.task.arguments = ["--dbpath", self.dataPath, "--nounixsocket", "--config", self.configPath]
+                
                 if let port = getPort() {
                     self.serverStatusMenuItem.title = "Running on Port \(port)"
                 }
-                
-                self.task.arguments = ["--dbpath", self.dataPath, "--nounixsocket", "--config", self.configPath]
             }
             
             self.task.standardOutput = self.pipe
@@ -280,6 +279,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let icon = NSImage(named: "statusIcon")
         icon?.template = true
         
+        if let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String? {
+            statusItem.toolTip = "mongod-starter \(version)"
+        }
+        
+        statusItem.length = 27
         statusItem.image = icon
         statusItem.menu = statusMenu
     }
