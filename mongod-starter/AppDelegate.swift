@@ -20,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var binPathTextfield: NSTextField!
     @IBOutlet weak var dataStoreTextfield: NSTextField!
     @IBOutlet weak var configFileTextfield: NSTextField!
-    @IBOutlet weak var startupCheckBox: NSButton!
+    @IBOutlet weak var showNotifCheckbox: NSButton!
     
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     let defBinDir = NSUserDefaults.standardUserDefaults()
@@ -33,6 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var pipe: NSPipe = NSPipe()
     var file: NSFileHandle
     let mongodFile: String = "/mongod"
+    var showsDesktopNotifications: Bool = true
     
     override init() {
         self.file = self.pipe.fileHandleForReading
@@ -199,16 +200,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         startMongod()
         if let port = getPort() {
             self.serverStatusMenuItem.title = "Running on Port \(port)"
-            showNotification("mongod-starter", text: "MongoDB server running on port \(port)", senderTitle: sender.title)
+            
+            if showsDesktopNotifications {
+                showNotification("mongod-starter", text: "MongoDB server running on port \(port)", senderTitle: sender.title)
+            }
+            
         } else {
             self.serverStatusMenuItem.title = "Running on Port 27017"
-            showNotification("mongod-starter", text: "MongoDB server running on port 27017", senderTitle: sender.title)
+            
+            if showsDesktopNotifications {
+                showNotification("mongod-starter", text: "MongoDB server running on port 27017", senderTitle: sender.title)
+            }
         }
     }
    
     @IBAction func stopServer(sender: NSMenuItem) {
         stopMongod()
-        showNotification("mongod-starter", text: "MongoDB server has been stopped", senderTitle: sender.title)
+        
+        if showsDesktopNotifications {
+            showNotification("mongod-starter", text: "MongoDB server has been stopped", senderTitle: sender.title)
+        }
     }
     
     @IBAction func openPreferences(sender: NSMenuItem) {
@@ -260,18 +271,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApplication.sharedApplication().terminate(sender)
     }
     
-    // login item change actions
-    @IBAction func startupLaunch(sender: NSButton) {
-       /*let appURL: CFURLRef = NSURL.fileURLWithPath(NSBundle.mainBundle().bundlePath)
-        
-        if startupCheckBox.state == NSOnState {
-            
-        } else if startupCheckBox.state == NSOffState {
-            
+    @IBAction func showNotifications(sender: NSButton) {
+        if showNotifCheckbox.state == NSOnState {
+            showsDesktopNotifications = true
+        } else if showNotifCheckbox.state == NSOffState {
+            showsDesktopNotifications = false
         }
-        */
     }
-    
     
     /* LAUNCH AND TERMINATION EVENTS */
     func applicationDidFinishLaunching(aNotification: NSNotification) {
@@ -310,6 +316,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         
-        stopMongod() // make sure the server shuts down before quitting the application
+        stopMongod() // makes sure the server shuts down before quitting the application
     }
 }

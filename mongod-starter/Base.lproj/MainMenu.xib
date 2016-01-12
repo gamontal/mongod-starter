@@ -19,8 +19,8 @@
                 <outlet property="dataStoreTextfield" destination="E2R-SN-uLo" id="1UA-GV-zzP"/>
                 <outlet property="preferencesWindow" destination="rjV-VU-YPT" id="pR6-v5-IKD"/>
                 <outlet property="serverStatusMenuItem" destination="o4g-5l-DOV" id="Qz8-Q2-VAP"/>
+                <outlet property="showNotifCheckbox" destination="FDH-g3-mcO" id="3yo-kQ-QBm"/>
                 <outlet property="startServerMenuItem" destination="eI2-Nw-uVq" id="tYA-U1-kaw"/>
-                <outlet property="startupCheckBox" destination="mqz-yr-4vN" id="96N-bT-Fi2"/>
                 <outlet property="statusMenu" destination="2cy-cR-nB7" id="U9M-T2-dcP"/>
                 <outlet property="stopServerMenuItem" destination="24L-5C-GEo" id="UGN-aI-Ew0"/>
             </connections>
@@ -78,14 +78,32 @@
         </menu>
         <window title="mongod-starter Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="rjV-VU-YPT">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-            <rect key="contentRect" x="0.0" y="0.0" width="452" height="402"/>
+            <rect key="contentRect" x="0.0" y="0.0" width="452" height="384"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="IqX-fq-BrE">
-                <rect key="frame" x="0.0" y="0.0" width="452" height="402"/>
+                <rect key="frame" x="0.0" y="0.0" width="452" height="384"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LqG-NR-6xt">
+                        <rect key="frame" x="33" y="343" width="147" height="18"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Desktop notifications:" id="UAR-Cq-b5c">
+                            <font key="font" size="14" name=".HelveticaNeueDeskInterface-Regular"/>
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FDH-g3-mcO">
+                        <rect key="frame" x="184" y="342" width="22" height="18"/>
+                        <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="zG3-p1-tm8">
+                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showNotifications:" target="Voe-Tx-rLC" id="pba-IB-fce"/>
+                        </connections>
+                    </button>
                     <box fixedFrame="YES" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="TEy-GM-zNJ">
-                        <rect key="frame" x="17" y="22" width="418" height="302"/>
+                        <rect key="frame" x="17" y="23" width="418" height="302"/>
                         <view key="contentView" ambiguous="YES" id="PUl-vZ-6WE">
                             <rect key="frame" x="1" y="1" width="416" height="300"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -198,35 +216,9 @@ DQ
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sQO-6t-vDi">
-                        <rect key="frame" x="91" y="338" width="223" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Start mongod-starter automatically." id="nfK-qe-kRK">
-                            <font key="font" size="11" name=".HelveticaNeueDeskInterface-Regular"/>
-                            <color key="textColor" white="0.40285773026315791" alpha="0.84999999999999998" colorSpace="calibratedWhite"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LqG-NR-6xt">
-                        <rect key="frame" x="33" y="361" width="57" height="18"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Startup:" id="UAR-Cq-b5c">
-                            <font key="font" size="14" name=".HelveticaNeueDeskInterface-Regular"/>
-                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mqz-yr-4vN">
-                        <rect key="frame" x="91" y="360" width="217" height="18"/>
-                        <buttonCell key="cell" type="check" title="Launch mongod-starter at login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="kFO-HR-NDo">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="startupLaunch:" target="Voe-Tx-rLC" id="k52-y0-Eyy"/>
-                        </connections>
-                    </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-424" y="-6"/>
+            <point key="canvasLocation" x="-424" y="-15"/>
         </window>
     </objects>
 </document>
