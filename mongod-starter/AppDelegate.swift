@@ -70,20 +70,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             alert("ERROR: Invalid path", information: "MongoDB server and data storage locations are required. Go to Preferences.")
             
             return
-            
         } else {
             let path = self.binPath
-        
             self.task.launchPath = path
             
             if (!NSFileManager.defaultManager().fileExistsAtPath(self.configPath)) {
                 self.task.arguments = ["--dbpath", self.dataPath, "--nounixsocket"]
             } else {
                 self.task.arguments = ["--dbpath", self.dataPath, "--nounixsocket", "--config", self.configPath]
-                
-                if let port = getPort() {
-                    self.serverStatusMenuItem.title = "Running on Port \(port)"
-                }
             }
             
             self.task.standardOutput = self.pipe
@@ -184,15 +178,37 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         alert.runModal()
     }
+    
+    func showNotification(title: String, senderTitle: String) {
+        let notification: NSUserNotification = NSUserNotification()
+        notification.title = title
+        //notification.informativeText = text
+        notification.hasActionButton = true
+        notification.actionButtonTitle = senderTitle
+        
+        notification.deliveryDate = NSDate(timeIntervalSinceNow: 3)
+        
+        if let notificationcenter: NSUserNotificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter() {
+            notificationcenter.scheduleNotification(notification)
+        }
+    }
 
     
     /* ITEM ACTIONS */
     @IBAction func startServer(sender: NSMenuItem) {
         startMongod()
+        if let port = getPort() {
+            self.serverStatusMenuItem.title = "Running on Port \(port)"
+            showNotification("MongoDB server is now running on port \(port)", senderTitle: sender.title)
+        } else {
+            self.serverStatusMenuItem.title = "Running on Port 27017"
+            showNotification("MongoDB server is now running on port 27017", senderTitle: sender.title)
+        }
     }
    
     @IBAction func stopServer(sender: NSMenuItem) {
         stopMongod()
+        showNotification("MongoDB server has been stopped", senderTitle: sender.title)
     }
     
     @IBAction func openPreferences(sender: NSMenuItem) {
