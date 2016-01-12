@@ -26,6 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let defBinDir = NSUserDefaults.standardUserDefaults()
     let defDataDir = NSUserDefaults.standardUserDefaults()
     let configFileDir = NSUserDefaults.standardUserDefaults()
+    let showNotifications = NSUserDefaults.standardUserDefaults()
     var dataPath: String
     var binPath: String
     var configPath: String
@@ -88,6 +89,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
             self.task.launch()
             
+            if let port = getPort() {
+                self.serverStatusMenuItem.title = "Running on Port \(port)"
+                
+                if showsDesktopNotifications {
+                    showNotification("mongod-starter", text: "MongoDB server running on port \(port)", senderTitle: "Start MongoDB Server")
+                }
+                
+            } else {
+                self.serverStatusMenuItem.title = "Running on Port 27017"
+                
+                if showsDesktopNotifications {
+                    showNotification("mongod-starter", text: "MongoDB server running on port 27017", senderTitle: "Start MongoDB Server")
+                }
+            }
+            
             self.startServerMenuItem.hidden = true
             self.stopServerMenuItem.hidden = false
         }
@@ -97,6 +113,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         print("-> SHUTTING DOWN MONGOD")
         
         task.terminate()
+        
+        if showsDesktopNotifications {
+            showNotification("mongod-starter", text: "MongoDB server has been stopped", senderTitle: "Stop MongoDB Server")
+        }
         
         self.serverStatusMenuItem.hidden = true
         self.startServerMenuItem.hidden = false
@@ -189,28 +209,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /* ITEM ACTIONS */
     @IBAction func startServer(sender: NSMenuItem) {
         startMongod()
-        if let port = getPort() {
-            self.serverStatusMenuItem.title = "Running on Port \(port)"
-            
-            if showsDesktopNotifications {
-                showNotification("mongod-starter", text: "MongoDB server running on port \(port)", senderTitle: sender.title)
-            }
-            
-        } else {
-            self.serverStatusMenuItem.title = "Running on Port 27017"
-            
-            if showsDesktopNotifications {
-                showNotification("mongod-starter", text: "MongoDB server running on port 27017", senderTitle: sender.title)
-            }
-        }
     }
    
     @IBAction func stopServer(sender: NSMenuItem) {
         stopMongod()
-        
-        if showsDesktopNotifications {
-            showNotification("mongod-starter", text: "MongoDB server has been stopped", senderTitle: sender.title)
-        }
     }
     
     @IBAction func openPreferences(sender: NSMenuItem) {
@@ -265,14 +267,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func showNotifications(sender: NSButton) {
         if showNotifCheckbox.state == NSOnState {
             showsDesktopNotifications = true
+            showNotifications.setBool(true, forKey: "ShowNotifications")
         } else if showNotifCheckbox.state == NSOffState {
             showsDesktopNotifications = false
+            showNotifications.setBool(false, forKey: "ShowNotifications")
         }
+        showNotifications.synchronize()
     }
     
     /* LAUNCH AND TERMINATION EVENTS */
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         self.preferencesWindow!.orderOut(self)
+        
+        if self.showNotifications.boolForKey("ShowNotifications") {
+            showNotifCheckbox.state = NSOnState
+        } else {
+            showNotifCheckbox.state = NSOffState
+        }
         
         if defDataDir.stringForKey("defDataDir") != nil {
             let customDataDirectory = defDataDir.stringForKey("defDataDir")!
