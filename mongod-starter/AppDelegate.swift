@@ -161,15 +161,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return nil
     }
     
-    func getLoginItems() -> LSSharedFileList? {
-        let allocator: CFAllocator! = CFAllocatorGetDefault().takeUnretainedValue()
-        let kLoginItems: CFString! = kLSSharedFileListSessionLoginItems.takeUnretainedValue()
-        let loginItems_ = LSSharedFileListCreate(allocator, kLoginItems, nil)
-        if loginItems_ == nil {return nil}
-        let loginItems: LSSharedFileList! = loginItems_.takeRetainedValue()
-        return loginItems
-    }
-    
     // wraps NSAlert() methods
     func alert(message: String, information: String) {
         let alert = NSAlert()
