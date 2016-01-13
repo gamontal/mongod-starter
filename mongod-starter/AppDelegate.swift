@@ -302,6 +302,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let icon = NSImage(named: "statusIcon")
         icon?.template = true
+        icon!.size = NSSize(width: 13.3, height: 18.3)
         
         if let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String? {
             statusItem.toolTip = "mongod-starter \(version)"
