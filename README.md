@@ -27,4 +27,4 @@
 
 ## Acknowledgements
 
-The mongod-starter logo was based on original artwork created by Melanie De Jesús.
+The mongod-starter logo was created by Melanie De Jesús.
