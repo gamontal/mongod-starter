@@ -372,6 +372,7 @@
 				BE6B11B31C3A379700BBF945 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BE6B11B41C3A379700BBF945 /* Build configuration list for PBXNativeTarget "mongod-starterTests" */ = {
 			isa = XCConfigurationList;
@@ -380,6 +381,7 @@
 				BE6B11B61C3A379700BBF945 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

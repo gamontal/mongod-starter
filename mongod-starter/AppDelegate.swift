@@ -246,6 +246,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func openAbout(sender: NSMenuItem) {
         NSApplication.sharedApplication().orderFrontStandardAboutPanel(sender)
+        NSApplication.sharedApplication().activateIgnoringOtherApps(true)
     }
     
     @IBAction func openDoc(sender: NSMenuItem) {
