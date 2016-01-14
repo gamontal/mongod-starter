@@ -32,7 +32,7 @@
 
 ## Acknowledgements
 
-The mongod-starter logo was created by [Melanie De Jesús](mailto:melanie.dejesus92@hotmail.com) • [Instagram](https://www.instagram.com/cybertrousers/).
+mongod-starter.app icon done by [Melanie De Jesús](mailto:melanie.dejesus92@hotmail.com) • [Instagram](https://www.instagram.com/cybertrousers/).
 
 ## License
 
