@@ -1,12 +1,16 @@
-# mongod-starter ![](https://img.shields.io/github/release/gmontalvoriv/mongod-starter.svg)
+# mongod-starter ![](https://img.shields.io/github/release/gmontalvoriv/mongod-starter.svg) ![](https://img.shields.io/github/commits-since/gmontalvoriv/mongod-starter/1.0.0.svg)
+
+<img align="right" height="300" width="300" src="https://github.com/gmontalvoriv/mongod-starter/blob/master/images/logo.png" />
 
 ## Overview
 
-`mongod-starter` is a menu bar application for starting your local MongoDB server. With this utility you will also be able to save your `mongod`, data storage, and configuration file directories allowing you to have a more consistent setup.
+**mongod-starter** is a menu bar application for starting your local **MongoDB** server. With this utility you will also be able to save your `mongod`, data storage, and configuration file directories allowing you to have a more consistent setup.
 
-![](https://github.com/gmontalvoriv/mongod-starter/blob/master/Screenshot.png)
+## [Download](https://github.com/gmontalvoriv/mongod-starter/releases)
 
-### [Download](https://github.com/gmontalvoriv/mongod-starter/releases)
+## Screenshot
+
+![](https://github.com/gmontalvoriv/mongod-starter/blob/master/images/Screenshot.png)
 
 ## Requirements
 
@@ -27,4 +31,9 @@
 
 ## Acknowledgements
 
-The mongod-starter logo was created by Melanie De Jesús.
+The mongod-starter logo was created by [Melanie De Jesús](melanie.dejesus92@hotmail.com).
+
+## License
+
+[MIT](https://github.com/gmontalvoriv/mongod-starter/blob/master/LICENSE) © Gabriel Montalvo
+
