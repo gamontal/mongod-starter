@@ -8,6 +8,7 @@
 
 ## [Download](https://github.com/gmontalvoriv/mongod-starter/releases)
 
+<br>
 ## Screenshot
 
 ![](https://github.com/gmontalvoriv/mongod-starter/blob/master/images/Screenshot.png)
@@ -31,7 +32,7 @@
 
 ## Acknowledgements
 
-The mongod-starter logo was created by [Melanie De Jesús](melanie.dejesus92@hotmail.com).
+The mongod-starter logo was created by [Melanie De Jesús](mailto:melanie.dejesus92@hotmail.com).
 
 ## License
 
