@@ -26,13 +26,13 @@
 
 ## Configuration
 
-- Go to Preferences
-- Setup `mongod` and data storage locations
-- Optionally add your `mongod` configuration file 
+1. Go to Preferences
+2. Setup `mongod` and data storage locations
+3. Optionally add your `mongod` configuration file 
 
 ## Acknowledgements
 
-The mongod-starter logo was created by [Melanie De Jesús](mailto:melanie.dejesus92@hotmail.com).
+The mongod-starter logo was created by [Melanie De Jesús](mailto:melanie.dejesus92@hotmail.com) • [Instagram](https://www.instagram.com/cybertrousers/).
 
 ## License
 
