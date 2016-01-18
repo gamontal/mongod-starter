@@ -11,7 +11,7 @@
 <br>
 ## Screenshot
 
-![](https://github.com/gmontalvoriv/mongod-starter/blob/master/images/Screenshot.png)
+<img align="right" height="335" width="900" src="https://github.com/gmontalvoriv/mongod-starter/blob/master/images/Screenshot.png" />
 
 ## Requirements
 
