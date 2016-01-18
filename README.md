@@ -30,6 +30,15 @@
 2. Setup `mongod` and data storage locations
 3. Optionally add your `mongod` configuration file 
 
+### Homebrew users
+
+> After installing MongoDB with **Homebrew**:
+
+- The databases are stored in the `/usr/local/var/mongodb/` directory
+- The mongod.conf file is here: `/usr/local/etc/mongod.conf`
+- The mongo logs can be found at `/usr/local/var/log/mongodb/`
+- The mongo binaries are here: `/usr/local/Cellar/mongodb//bin`
+
 ## Acknowledgements
 
 mongod-starter.app icon done by [Melanie De Jesús](mailto:melanie.dejesus92@hotmail.com) • [Instagram](https://www.instagram.com/cybertrousers/).
