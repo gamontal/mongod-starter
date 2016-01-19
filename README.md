@@ -39,6 +39,10 @@
 - The mongo logs can be found at `/usr/local/var/log/mongodb/`
 - The mongo binaries are here: `/usr/local/Cellar/mongodb//bin`
 
+## Contributions
+
+Do you want to improve the app or add any useful features? Please go ahead and create pull requests. I'm thankful for any help.
+
 ## Acknowledgements
 
 - mongod-starter.app icon done by [Melanie De Jesús](mailto:melanie.dejesus92@hotmail.com) • [Instagram](https://www.instagram.com/cybertrousers/)
