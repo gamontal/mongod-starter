@@ -232,12 +232,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         configFileTextfield.stringValue = getDir(true, canChooseDirectories: false)
     }
     
-    class WindowDelegate: NSObject, NSWindowDelegate {
-        func windowWillClose(notification: NSNotification?) {
-            NSApplication.sharedApplication().terminate(0)
-        }
-    }
-    
     @IBAction func savePrefChanges(sender: NSButton) {
         defBinDir.setObject(binPathTextfield.stringValue, forKey: "defBinDir")
         defDataDir.setObject(dataStoreTextfield.stringValue, forKey: "defDataDir")
