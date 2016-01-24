@@ -69,7 +69,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if ((!NSFileManager.defaultManager().fileExistsAtPath(self.binPath)) || (!NSFileManager.defaultManager().fileExistsAtPath(self.dataPath))) {
             print("--> ERROR: Invalid path in UserDefaults")
             
-            alert("ERROR: Invalid path", information: "MongoDB server and data storage locations are required. Go to Preferences.")
+            alert("Error: Invalid path", information: "MongoDB server and data storage locations are required. Go to Preferences.")
             
             return
         } else {
@@ -99,9 +99,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             } else {
                 self.serverStatusMenuItem.title = "Running on Port 27017"
                 
+                /*
                 if showsDesktopNotifications {
                     showNotification("mongod-starter", text: "MongoDB server running on port 27017", senderTitle: "Start MongoDB Server")
                 }
+                */
             }
             
             self.startServerMenuItem.hidden = true
@@ -114,9 +116,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         task.terminate()
         
+        /*
         if showsDesktopNotifications {
             showNotification("mongod-starter", text: "MongoDB server has been stopped", senderTitle: "Stop MongoDB Server")
-        }
+        } */
         
         self.serverStatusMenuItem.hidden = true
         self.startServerMenuItem.hidden = false
