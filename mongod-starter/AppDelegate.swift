@@ -109,11 +109,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         task.terminate()
         
-        /*
-        if showsDesktopNotifications {
-            showNotification("mongod-starter", text: "MongoDB server has been stopped", senderTitle: "Stop MongoDB Server")
-        } */
-        
         self.serverStatusMenuItem.hidden = true
         self.startServerMenuItem.hidden = false
         self.stopServerMenuItem.hidden = true
