@@ -91,12 +91,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 
             } else {
                 self.serverStatusMenuItem.title = "Running on Port 27017"
-                
-                /*
-                if showsDesktopNotifications {
-                    showNotification("mongod-starter", text: "MongoDB server running on port 27017", senderTitle: "Start MongoDB Server")
-                }
-                */
             }
             
             self.startServerMenuItem.hidden = true
