@@ -20,13 +20,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var binPathTextfield: NSTextField!
     @IBOutlet weak var dataStoreTextfield: NSTextField!
     @IBOutlet weak var configFileTextfield: NSTextField!
-    @IBOutlet weak var showNotifCheckbox: NSButton!
     
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     let defBinDir = NSUserDefaults.standardUserDefaults()
     let defDataDir = NSUserDefaults.standardUserDefaults()
     let configFileDir = NSUserDefaults.standardUserDefaults()
-    let showNotifications = NSUserDefaults.standardUserDefaults()
     var dataPath: String
     var binPath: String
     var configPath: String
@@ -34,7 +32,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var pipe: NSPipe = NSPipe()
     var file: NSFileHandle
     let mongodFile: String = "/mongod"
-    var showsDesktopNotifications: Bool = true
     
     override init() {
         self.file = self.pipe.fileHandleForReading
@@ -91,10 +88,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
             if let port = getPort() {
                 self.serverStatusMenuItem.title = "Running on Port \(port)"
-                
-                if showsDesktopNotifications {
-                    showNotification("mongod-starter", text: "MongoDB server running on port \(port)", senderTitle: "Start MongoDB Server")
-                }
                 
             } else {
                 self.serverStatusMenuItem.title = "Running on Port 27017"
@@ -193,20 +186,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         alert.runModal()
     }
-    
-    func showNotification(title: String, text: String, senderTitle: String) {
-        let notification: NSUserNotification = NSUserNotification()
-        notification.title = title
-        notification.informativeText = text
-        notification.hasActionButton = true
-        notification.actionButtonTitle = senderTitle
-        
-        notification.deliveryDate = NSDate(timeIntervalSinceNow: 3)
-        
-        if let notificationcenter: NSUserNotificationCenter = NSUserNotificationCenter.defaultUserNotificationCenter() {
-            notificationcenter.scheduleNotification(notification)
-        }
-    }
 
     
     /* ITEM ACTIONS */
@@ -225,26 +204,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func browseBinDir(sender: NSButton) {
         binPathTextfield.stringValue = getDir(false, canChooseDirectories: true)
+        defBinDir.setObject(binPathTextfield.stringValue, forKey: "defBinDir")
+        self.binPath = defBinDir.stringForKey("defBinDir")! + mongodFile
     }
     
     @IBAction func browseDataDir(sender: NSButton) {
         dataStoreTextfield.stringValue = getDir(false, canChooseDirectories: true)
+        defDataDir.setObject(dataStoreTextfield.stringValue, forKey: "defDataDir")
+        self.dataPath = defDataDir.stringForKey("defDataDir")!
+
     }
     
     @IBAction func browseConfigDir(sender: NSButton) {
         configFileTextfield.stringValue = getDir(true, canChooseDirectories: false)
-    }
-    
-    @IBAction func savePrefChanges(sender: NSButton) {
-        defBinDir.setObject(binPathTextfield.stringValue, forKey: "defBinDir")
-        defDataDir.setObject(dataStoreTextfield.stringValue, forKey: "defDataDir")
         configFileDir.setObject(configFileTextfield.stringValue, forKey: "configFileDir")
-        
-        self.binPath = defBinDir.stringForKey("defBinDir")! + mongodFile
-        self.dataPath = defDataDir.stringForKey("defDataDir")!
         self.configPath = configFileDir.stringForKey("configFileDir")!
-        
-        preferencesWindow.close()
     }
     
     @IBAction func openAbout(sender: NSMenuItem) {
@@ -268,26 +242,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         NSApplication.sharedApplication().terminate(sender)
     }
     
-    @IBAction func showNotifications(sender: NSButton) {
-        if showNotifCheckbox.state == NSOnState {
-            showsDesktopNotifications = true
-            showNotifications.setBool(true, forKey: "ShowNotifications")
-        } else if showNotifCheckbox.state == NSOffState {
-            showsDesktopNotifications = false
-            showNotifications.setBool(false, forKey: "ShowNotifications")
-        }
-        showNotifications.synchronize()
-    }
-    
     /* LAUNCH AND TERMINATION EVENTS */
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         self.preferencesWindow!.orderOut(self)
-        
-        if self.showNotifications.boolForKey("ShowNotifications") {
-            showNotifCheckbox.state = NSOnState
-        } else {
-            showNotifCheckbox.state = NSOffState
-        }
         
         if defDataDir.stringForKey("defDataDir") != nil {
             let customDataDirectory = defDataDir.stringForKey("defDataDir")!

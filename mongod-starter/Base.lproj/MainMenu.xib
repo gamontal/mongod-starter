@@ -19,7 +19,6 @@
                 <outlet property="dataStoreTextfield" destination="E2R-SN-uLo" id="1UA-GV-zzP"/>
                 <outlet property="preferencesWindow" destination="rjV-VU-YPT" id="pR6-v5-IKD"/>
                 <outlet property="serverStatusMenuItem" destination="o4g-5l-DOV" id="Qz8-Q2-VAP"/>
-                <outlet property="showNotifCheckbox" destination="FDH-g3-mcO" id="3yo-kQ-QBm"/>
                 <outlet property="startServerMenuItem" destination="eI2-Nw-uVq" id="tYA-U1-kaw"/>
                 <outlet property="statusMenu" destination="2cy-cR-nB7" id="U9M-T2-dcP"/>
                 <outlet property="stopServerMenuItem" destination="24L-5C-GEo" id="UGN-aI-Ew0"/>
@@ -78,22 +77,14 @@
         </menu>
         <window title="mongod-starter Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="rjV-VU-YPT">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-            <rect key="contentRect" x="0.0" y="0.0" width="452" height="354"/>
+            <rect key="contentRect" x="0.0" y="0.0" width="452" height="302"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="IqX-fq-BrE">
-                <rect key="frame" x="0.0" y="0.0" width="452" height="354"/>
+                <rect key="frame" x="0.0" y="0.0" width="452" height="302"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LqG-NR-6xt">
-                        <rect key="frame" x="18" y="34" width="147" height="18"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Desktop notifications:" id="UAR-Cq-b5c">
-                            <font key="font" size="14" name=".HelveticaNeueDeskInterface-Regular"/>
-                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
                     <box fixedFrame="YES" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="TEy-GM-zNJ">
-                        <rect key="frame" x="17" y="68" width="418" height="268"/>
+                        <rect key="frame" x="17" y="16" width="418" height="268"/>
                         <view key="contentView" ambiguous="YES" id="PUl-vZ-6WE">
                             <rect key="frame" x="1" y="1" width="416" height="266"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -196,29 +187,9 @@ DQ
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HSG-mj-cY9">
-                        <rect key="frame" x="311" y="24" width="127" height="32"/>
-                        <buttonCell key="cell" type="push" title="Save changes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="SyR-z8-nYL">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="savePrefChanges:" target="Voe-Tx-rLC" id="byf-xX-UMZ"/>
-                        </connections>
-                    </button>
-                    <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FDH-g3-mcO">
-                        <rect key="frame" x="169" y="34" width="22" height="18"/>
-                        <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="zG3-p1-tm8">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="showNotifications:" target="Voe-Tx-rLC" id="pba-IB-fce"/>
-                        </connections>
-                    </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-424" y="-30"/>
+            <point key="canvasLocation" x="-424" y="-56"/>
         </window>
     </objects>
 </document>
