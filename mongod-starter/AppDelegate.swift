@@ -201,7 +201,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         dataStoreTextfield.stringValue = getDir(false, canChooseDirectories: true)
         defDataDir.setObject(dataStoreTextfield.stringValue, forKey: "defDataDir")
         self.dataPath = defDataDir.stringForKey("defDataDir")!
-
     }
     
     @IBAction func browseConfigDir(sender: NSButton) {

@@ -77,20 +77,20 @@
         </menu>
         <window title="mongod-starter Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="rjV-VU-YPT">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-            <rect key="contentRect" x="0.0" y="0.0" width="452" height="302"/>
+            <rect key="contentRect" x="0.0" y="0.0" width="452" height="308"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="IqX-fq-BrE">
-                <rect key="frame" x="0.0" y="0.0" width="452" height="302"/>
+                <rect key="frame" x="0.0" y="0.0" width="452" height="308"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <box fixedFrame="YES" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="TEy-GM-zNJ">
-                        <rect key="frame" x="17" y="16" width="418" height="268"/>
+                        <rect key="frame" x="17" y="16" width="418" height="274"/>
                         <view key="contentView" ambiguous="YES" id="PUl-vZ-6WE">
-                            <rect key="frame" x="1" y="1" width="416" height="266"/>
+                            <rect key="frame" x="1" y="1" width="416" height="272"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="svn-CJ-0MU">
-                                    <rect key="frame" x="15" y="69" width="240" height="18"/>
+                                    <rect key="frame" x="15" y="75" width="240" height="18"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="mongod configuration file location:" id="BHE-uq-TGR">
                                         <font key="font" size="14" name=".HelveticaNeueDeskInterface-Regular"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -98,7 +98,7 @@
                                     </textFieldCell>
                                 </textField>
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p3p-je-ss8">
-                                    <rect key="frame" x="318" y="195" width="87" height="32"/>
+                                    <rect key="frame" x="318" y="201" width="87" height="32"/>
                                     <buttonCell key="cell" type="push" title="Browse" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="RKD-mv-GOq">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -111,7 +111,7 @@ DQ
                                     </connections>
                                 </button>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fzU-Od-4Pl">
-                                    <rect key="frame" x="15" y="231" width="184" height="18"/>
+                                    <rect key="frame" x="15" y="237" width="184" height="18"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="MongoDB server location:" id="E3c-lG-kyr">
                                         <font key="font" size="14" name=".HelveticaNeueDeskInterface-Regular"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -119,7 +119,7 @@ DQ
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="txB-vM-IRs">
-                                    <rect key="frame" x="17" y="201" width="299" height="22"/>
+                                    <rect key="frame" x="17" y="207" width="299" height="22"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Required" drawsBackground="YES" id="j9e-WC-XiG">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" white="0.25310958059210525" alpha="1" colorSpace="calibratedWhite"/>
@@ -127,7 +127,7 @@ DQ
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E2R-SN-uLo">
-                                    <rect key="frame" x="17" y="126" width="299" height="22"/>
+                                    <rect key="frame" x="17" y="132" width="299" height="22"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Required" drawsBackground="YES" id="XLl-iu-Jes">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" white="0.25310958059999999" alpha="1" colorSpace="calibratedWhite"/>
@@ -135,7 +135,7 @@ DQ
                                     </textFieldCell>
                                 </textField>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YEF-0b-XPB">
-                                    <rect key="frame" x="15" y="156" width="225" height="18"/>
+                                    <rect key="frame" x="15" y="162" width="225" height="18"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="MongoDB data storage location:" id="LZ2-1g-p4F">
                                         <font key="font" size="14" name=".HelveticaNeueDeskInterface-Regular"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -143,7 +143,7 @@ DQ
                                     </textFieldCell>
                                 </textField>
                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="saD-nV-RiQ">
-                                    <rect key="frame" x="17" y="39" width="299" height="22"/>
+                                    <rect key="frame" x="17" y="45" width="299" height="22"/>
                                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Optional" drawsBackground="YES" id="I20-Be-Ryi">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" white="0.25310958059999999" alpha="1" colorSpace="calibratedWhite"/>
@@ -151,13 +151,13 @@ DQ
                                     </textFieldCell>
                                 </textField>
                                 <box verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="RFA-Jw-j3G">
-                                    <rect key="frame" x="17" y="101" width="382" height="5"/>
+                                    <rect key="frame" x="17" y="107" width="382" height="5"/>
                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <font key="titleFont" metaFont="system"/>
                                 </box>
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eM8-Bl-VlB">
-                                    <rect key="frame" x="318" y="120" width="87" height="32"/>
+                                    <rect key="frame" x="318" y="126" width="87" height="32"/>
                                     <buttonCell key="cell" type="push" title="Browse" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WYw-SZ-e5a">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -170,7 +170,7 @@ DQ
                                     </connections>
                                 </button>
                                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oqd-og-CBi">
-                                    <rect key="frame" x="318" y="33" width="87" height="32"/>
+                                    <rect key="frame" x="318" y="39" width="87" height="32"/>
                                     <buttonCell key="cell" type="push" title="Browse" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Lpp-zH-xR5">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" metaFont="system"/>
@@ -182,6 +182,13 @@ DQ
                                         <action selector="browseConfigDir:" target="Voe-Tx-rLC" id="YV5-cG-2VN"/>
                                     </connections>
                                 </button>
+                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dLV-qX-rcJ">
+                                    <rect key="frame" x="15" y="18" width="214" height="18"/>
+                                    <buttonCell key="cell" type="check" title="use mongod configuration file" bezelStyle="regularSquare" imagePosition="left" inset="2" id="B5Z-HT-4qY">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </button>
                             </subviews>
                         </view>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -189,7 +196,7 @@ DQ
                     </box>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-424" y="-56"/>
+            <point key="canvasLocation" x="-424" y="-53"/>
         </window>
     </objects>
 </document>
