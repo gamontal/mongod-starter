@@ -4,9 +4,11 @@ branches:
   only:
   - master
 
+osx_image: xcode6.4
 xcode_project: mongod-starter.xcodeproj
 xcode_scheme: mongod-starter
 osx_image: xcode7.3
 
 script:
 - xcodebuild clean build test -project mongod-starter.xcodeproj -scheme mongod-starterTests
+
