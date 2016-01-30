@@ -15,6 +15,7 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="mongod_starter" customModuleProvider="target">
             <connections>
                 <outlet property="binPathTextfield" destination="txB-vM-IRs" id="Kab-46-ZG6"/>
+                <outlet property="configFileCheckBox" destination="dLV-qX-rcJ" id="Kue-5A-pDW"/>
                 <outlet property="configFileTextfield" destination="saD-nV-RiQ" id="GIM-P6-z79"/>
                 <outlet property="dataStoreTextfield" destination="E2R-SN-uLo" id="1UA-GV-zzP"/>
                 <outlet property="preferencesWindow" destination="rjV-VU-YPT" id="pR6-v5-IKD"/>
@@ -144,7 +145,7 @@ DQ
                                 </textField>
                                 <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="saD-nV-RiQ">
                                     <rect key="frame" x="17" y="45" width="299" height="22"/>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Optional" drawsBackground="YES" id="I20-Be-Ryi">
+                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Optional" drawsBackground="YES" id="I20-Be-Ryi">
                                         <font key="font" metaFont="system"/>
                                         <color key="textColor" white="0.25310958059999999" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -183,8 +184,8 @@ DQ
                                     </connections>
                                 </button>
                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dLV-qX-rcJ">
-                                    <rect key="frame" x="15" y="18" width="214" height="18"/>
-                                    <buttonCell key="cell" type="check" title="use mongod configuration file" bezelStyle="regularSquare" imagePosition="left" inset="2" id="B5Z-HT-4qY">
+                                    <rect key="frame" x="15" y="17" width="218" height="22"/>
+                                    <buttonCell key="cell" type="check" title="use mongod configuration file" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="B5Z-HT-4qY">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>

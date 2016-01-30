@@ -20,6 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var binPathTextfield: NSTextField!
     @IBOutlet weak var dataStoreTextfield: NSTextField!
     @IBOutlet weak var configFileTextfield: NSTextField!
+    @IBOutlet weak var configFileCheckBox: NSButton!
     
     let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
     let defBinDir = NSUserDefaults.standardUserDefaults()
@@ -73,10 +74,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             let path = self.binPath
             self.task.launchPath = path
             
-            if (!NSFileManager.defaultManager().fileExistsAtPath(self.configPath)) {
-                self.task.arguments = ["--dbpath", self.dataPath, "--nounixsocket"]
-            } else {
-                self.task.arguments = ["--dbpath", self.dataPath, "--nounixsocket", "--config", self.configPath]
+            if configFileCheckBox.state == NSOnState {
+                if (NSFileManager.defaultManager().fileExistsAtPath(self.configPath)) {
+                    self.task.arguments = ["--dbpath", self.dataPath, "--nounixsocket", "--config", self.configPath]
+                    
+                    if let port = getPort() {
+                        self.serverStatusMenuItem.title = "Running on Port \(port)"
+                        
+                    } else {
+                        self.serverStatusMenuItem.title = "Running on Port 27017"
+                    }
+
+                } else if (configFileCheckBox.state == NSOffState) {
+                    self.task.arguments = ["--dbpath", self.dataPath, "--nounixsocket"]
+                    self.serverStatusMenuItem.title = "Running on Port 27017"
+                }
             }
             
             self.task.standardOutput = self.pipe
@@ -85,13 +97,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.serverStatusMenuItem.hidden = false
 
             self.task.launch()
-            
-            if let port = getPort() {
-                self.serverStatusMenuItem.title = "Running on Port \(port)"
-                
-            } else {
-                self.serverStatusMenuItem.title = "Running on Port 27017"
-            }
             
             self.startServerMenuItem.hidden = true
             self.stopServerMenuItem.hidden = false
