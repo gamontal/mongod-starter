@@ -7,4 +7,5 @@ branches:
 xcode_project: mongod-starter.xcodeproj
 xcode_scheme: mongod-starter
 osx_image: xcode7.3
+xcode_sdk: macosx10.11
 
