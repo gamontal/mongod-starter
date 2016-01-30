@@ -209,8 +209,8 @@ DQ
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FpF-Bj-iWh">
-                        <rect key="frame" x="113" y="27" width="190" height="17"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Reset directory location preferences" id="3RO-mx-PEE">
+                        <rect key="frame" x="114" y="25" width="190" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Reset directory preferences" id="3RO-mx-PEE">
                             <font key="font" size="11" name=".HelveticaNeueDeskInterface-Regular"/>
                             <color key="textColor" white="0.25310958059999999" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
