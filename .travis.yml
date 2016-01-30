@@ -6,7 +6,6 @@ branches:
 
 before_install:
   - brew update
-  - brew upgrade xctool
   
 xcode_project: mongod-starter.xcodeproj
 xcode_scheme: mongod-starter
