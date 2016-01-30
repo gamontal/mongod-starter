@@ -213,6 +213,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         configFileTextfield.stringValue = getDir(true, canChooseDirectories: false)
         configFileDir.setObject(configFileTextfield.stringValue, forKey: "configFileDir")
         self.configPath = configFileDir.stringForKey("configFileDir")!
+        
+        configFileCheckBox.enabled = true
     }
     
     @IBAction func useConfigurationFile(sender: NSButton) {
@@ -223,6 +225,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         useConfigFile.synchronize()
     }
+    
+    @IBAction func resetPreferences(sender: NSButton) {
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("defDataDir")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("defBinDir")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("configFileDir")
+        NSUserDefaults.standardUserDefaults().removeObjectForKey("useConfigFile")
+        dataStoreTextfield.stringValue = ""
+        binPathTextfield.stringValue = ""
+        configFileTextfield.stringValue = ""
+        configFileCheckBox.enabled = false
+        NSUserDefaults.standardUserDefaults().synchronize()
+    }
+    
     
     @IBAction func openAbout(sender: NSMenuItem) {
         NSApplication.sharedApplication().orderFrontStandardAboutPanel(sender)
