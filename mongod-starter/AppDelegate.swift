@@ -130,7 +130,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         browser.canChooseFiles = canChooseFiles
         browser.canChooseDirectories = canChooseDirectories
         
-        browser.runModal()
+        let i = browser.runModal()
         
         let url = browser.URL
         let path: String
@@ -141,7 +141,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             path = ""
         }
         
-        if (path != "") {
+        if (i == NSModalResponseOK) {
             return path
         } else {
             return ""
