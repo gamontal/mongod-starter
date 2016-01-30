@@ -1,4 +1,4 @@
-# mongod-starter ![](https://img.shields.io/github/release/gmontalvoriv/mongod-starter.svg) ![](https://img.shields.io/github/commits-since/gmontalvoriv/mongod-starter/1.0.0.svg)
+# mongod-starter ![](https://img.shields.io/github/release/gmontalvoriv/mongod-starter.svg) ![](https://img.shields.io/github/commits-since/gmontalvoriv/mongod-starter/1.1.0.svg)
 
 <img align="right" height="300" width="300" src="https://github.com/gmontalvoriv/mongod-starter/blob/master/images/logo.png" />
 
