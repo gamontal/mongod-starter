@@ -78,14 +78,14 @@
         </menu>
         <window title="mongod-starter Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="rjV-VU-YPT">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-            <rect key="contentRect" x="0.0" y="0.0" width="452" height="308"/>
+            <rect key="contentRect" x="0.0" y="0.0" width="452" height="318"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="IqX-fq-BrE">
-                <rect key="frame" x="0.0" y="0.0" width="452" height="308"/>
+                <rect key="frame" x="0.0" y="0.0" width="452" height="318"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <box fixedFrame="YES" borderType="line" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="TEy-GM-zNJ">
-                        <rect key="frame" x="17" y="16" width="418" height="274"/>
+                        <rect key="frame" x="17" y="26" width="418" height="274"/>
                         <view key="contentView" ambiguous="YES" id="PUl-vZ-6WE">
                             <rect key="frame" x="1" y="1" width="416" height="272"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -189,6 +189,9 @@ DQ
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
+                                    <connections>
+                                        <action selector="useConfigurationFile:" target="Voe-Tx-rLC" id="FTt-nA-hcX"/>
+                                    </connections>
                                 </button>
                             </subviews>
                         </view>
@@ -197,7 +200,7 @@ DQ
                     </box>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-424" y="-53"/>
+            <point key="canvasLocation" x="-424" y="-48"/>
         </window>
     </objects>
 </document>

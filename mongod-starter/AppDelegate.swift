@@ -26,6 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let defBinDir = NSUserDefaults.standardUserDefaults()
     let defDataDir = NSUserDefaults.standardUserDefaults()
     let configFileDir = NSUserDefaults.standardUserDefaults()
+    let useConfigFile = NSUserDefaults.standardUserDefaults()
     var dataPath: String
     var binPath: String
     var configPath: String
@@ -214,6 +215,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         self.configPath = configFileDir.stringForKey("configFileDir")!
     }
     
+    @IBAction func useConfigurationFile(sender: NSButton) {
+        if configFileCheckBox.state == NSOnState {
+            useConfigFile.setBool(true, forKey: "useConfigFile")
+        } else if (configFileCheckBox.state == NSOffState) {
+            useConfigFile.setBool(false, forKey: "useConfigFile")
+        }
+        useConfigFile.synchronize()
+    }
+    
     @IBAction func openAbout(sender: NSMenuItem) {
         NSApplication.sharedApplication().orderFrontStandardAboutPanel(sender)
         NSApplication.sharedApplication().activateIgnoringOtherApps(true)
@@ -238,6 +248,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     /* LAUNCH AND TERMINATION EVENTS */
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         self.preferencesWindow!.orderOut(self)
+        
+        if self.useConfigFile.boolForKey("useConfigFile") {
+            configFileCheckBox.state = NSOnState
+        } else {
+            configFileCheckBox.state = NSOffState
+        }
         
         if defDataDir.stringForKey("defDataDir") != nil {
             let customDataDirectory = defDataDir.stringForKey("defDataDir")!
