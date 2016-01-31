@@ -86,18 +86,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                         self.serverStatusMenuItem.title = "Running on Port 27017"
                     }
 
-                } else if (configFileCheckBox.state == NSOffState) {
-                    self.task.arguments = ["--dbpath", self.dataPath, "--nounixsocket"]
-                    self.serverStatusMenuItem.title = "Running on Port 27017"
                 }
+            } else {
+                self.task.arguments = ["--dbpath", self.dataPath, "--nounixsocket"]
+                self.serverStatusMenuItem.title = "Running on Port 27017"
             }
             
             self.task.standardOutput = self.pipe
     
-            print("-> MONGOD IS RUNNING...")
             self.serverStatusMenuItem.hidden = false
 
             self.task.launch()
+            print("-> MONGOD IS RUNNING...")
             
             self.startServerMenuItem.hidden = true
             self.stopServerMenuItem.hidden = false
@@ -264,7 +264,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         self.preferencesWindow!.orderOut(self)
         
-        if self.useConfigFile.boolForKey("useConfigFile") {
+        if self.useConfigFile.boolForKey("useConfigFile") == true {
             configFileCheckBox.state = NSOnState
         } else {
             configFileCheckBox.state = NSOffState
