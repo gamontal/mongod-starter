@@ -283,6 +283,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if configFileDir.stringForKey("configFileDir") != nil {
             let configFileDirectory = configFileDir.stringForKey("configFileDir")!
             configFileTextfield.stringValue = configFileDirectory
+            
+            configFileCheckBox.enabled = true
         }
         
         let icon = NSImage(named: "statusIcon")

@@ -185,7 +185,7 @@ DQ
                                 </button>
                                 <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dLV-qX-rcJ">
                                     <rect key="frame" x="15" y="18" width="218" height="22"/>
-                                    <buttonCell key="cell" type="check" title="use mongod configuration file" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="B5Z-HT-4qY">
+                                    <buttonCell key="cell" type="check" title="use mongod configuration file" bezelStyle="regularSquare" imagePosition="left" alignment="left" enabled="NO" inset="2" id="B5Z-HT-4qY">
                                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
