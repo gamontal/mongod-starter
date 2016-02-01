@@ -6,13 +6,12 @@ branches:
 
 before_install:
   - brew update
-  - brew install xcodebuild
-  
+
 xcode_project: mongod-starter.xcodeproj
 xcode_scheme: mongod-starter
 osx_image: xcode7.3
 xcode_sdk: macosx10.11
 
 script:
-  xcodebuild clean build test -project mongod-starter.xcodeproj -scheme mongod-starterTests
+  xctool clean build test -project mongod-starter.xcodeproj -scheme mongod-starterTests
 
