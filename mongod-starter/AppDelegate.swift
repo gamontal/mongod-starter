@@ -22,36 +22,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var configFileTextfield: NSTextField!
     @IBOutlet weak var configFileCheckBox: NSButton!
     
-    let statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-1)
-    let defBinDir = NSUserDefaults.standardUserDefaults()
-    let defDataDir = NSUserDefaults.standardUserDefaults()
-    let configFileDir = NSUserDefaults.standardUserDefaults()
-    let useConfigFile = NSUserDefaults.standardUserDefaults()
+    let statusItem = NSStatusBar.system().statusItem(withLength: -1)
+    let defBinDir = UserDefaults.standard
+    let defDataDir = UserDefaults.standard
+    let configFileDir = UserDefaults.standard
+    let useConfigFile = UserDefaults.standard
     var dataPath: String
     var binPath: String
     var configPath: String
-    var task: NSTask = NSTask()
-    var pipe: NSPipe = NSPipe()
-    var file: NSFileHandle
+    var task: Process = Process()
+    var pipe: Pipe = Pipe()
+    var file: FileHandle
     let mongodFile: String = "/mongod"
     
     override init() {
         self.file = self.pipe.fileHandleForReading
         
-        if defDataDir.stringForKey("defDataDir") != nil {
-            self.dataPath = defDataDir.stringForKey("defDataDir")!
+        if defDataDir.string(forKey: "defDataDir") != nil {
+            self.dataPath = defDataDir.string(forKey: "defDataDir")!
         } else {
             self.dataPath = ""
         }
         
-        if defBinDir.stringForKey("defBinDir") != nil {
-            self.binPath = defBinDir.stringForKey("defBinDir")! + mongodFile
+        if defBinDir.string(forKey: "defBinDir") != nil {
+            self.binPath = defBinDir.string(forKey: "defBinDir")! + mongodFile
         } else {
             self.binPath = ""
         }
         
-        if configFileDir.stringForKey("configFileDir") != nil {
-            self.configPath = configFileDir.stringForKey("configFileDir")!
+        if configFileDir.string(forKey: "configFileDir") != nil {
+            self.configPath = configFileDir.string(forKey: "configFileDir")!
         } else {
             self.configPath = ""
         }
@@ -61,11 +61,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     
     func startMongod() {
-        self.task = NSTask()
-        self.pipe = NSPipe()
+        self.task = Process()
+        self.pipe = Pipe()
         self.file = self.pipe.fileHandleForReading
         
-        if ((!NSFileManager.defaultManager().fileExistsAtPath(self.binPath)) || (!NSFileManager.defaultManager().fileExistsAtPath(self.dataPath))) {
+        if ((!FileManager.default.fileExists(atPath: self.binPath)) || (!FileManager.default.fileExists(atPath: self.dataPath))) {
             print("--> ERROR: Invalid path in UserDefaults")
             
             alert("Error: Invalid path", information: "MongoDB server and data storage locations are required. Go to Preferences.")
@@ -76,7 +76,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             self.task.launchPath = path
             
             if configFileCheckBox.state == NSOnState {
-                if (NSFileManager.defaultManager().fileExistsAtPath(self.configPath)) {
+                if (FileManager.default.fileExists(atPath: self.configPath)) {
                     self.task.arguments = ["--dbpath", self.dataPath, "--nounixsocket", "--config", self.configPath]
                     
                     if let port = getPort() {
@@ -94,13 +94,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             
             self.task.standardOutput = self.pipe
     
-            self.serverStatusMenuItem.hidden = false
+            self.serverStatusMenuItem.isHidden = false
 
             self.task.launch()
             print("-> MONGOD IS RUNNING...")
             
-            self.startServerMenuItem.hidden = true
-            self.stopServerMenuItem.hidden = false
+            self.startServerMenuItem.isHidden = true
+            self.stopServerMenuItem.isHidden = false
         }
     }
 
@@ -109,21 +109,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         task.terminate()
         
-        self.serverStatusMenuItem.hidden = true
-        self.startServerMenuItem.hidden = false
-        self.stopServerMenuItem.hidden = true
+        self.serverStatusMenuItem.isHidden = true
+        self.startServerMenuItem.isHidden = false
+        self.stopServerMenuItem.isHidden = true
         
-        let data: NSData = self.file.readDataToEndOfFile()
+        let data: Data = self.file.readDataToEndOfFile()
         
         self.file.closeFile()
     
-        let output: String = NSString(data: data, encoding: NSUTF8StringEncoding)! as String
+        let output: String = NSString(data: data, encoding: String.Encoding.utf8.rawValue)! as String
         
         print(output)
     }
     
     // returns the path to be stored in the UserDefaults database
-    func getDir(canChooseFiles: Bool, canChooseDirectories: Bool) -> String {
+    func getDir(_ canChooseFiles: Bool, canChooseDirectories: Bool) -> String {
         let browser: NSOpenPanel = NSOpenPanel()
         
         browser.allowsMultipleSelection = false
@@ -132,11 +132,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let i = browser.runModal()
         
-        let url = browser.URL
+        let url = browser.url
         let path: String
         
         if (url != nil) {
-            path = url!.path!
+            path = url!.path
         } else {
             path = ""
         }
@@ -153,15 +153,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let configPath = self.configPath
         
         do {
-            let content = try String(contentsOfFile: configPath, encoding: NSUTF8StringEncoding)
-            let contentArray = content.componentsSeparatedByString("\n")
+            let content = try String(contentsOfFile: configPath, encoding: String.Encoding.utf8)
+            let contentArray = content.components(separatedBy: "\n")
             
-            for (_, element) in contentArray.enumerate() {
-                let lineContent = element.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+            for (_, element) in contentArray.enumerated() {
+                let lineContent = element.trimmingCharacters(in: CharacterSet.whitespaces)
                 
-                if ((lineContent.rangeOfString("port") != nil) || (lineContent.rangeOfString("Port") != nil)) {
-                    if let port = lineContent.componentsSeparatedByString(":").last {
-                        return port.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
+                if ((lineContent.range(of: "port") != nil) || (lineContent.range(of: "Port") != nil)) {
+                    if let port = lineContent.components(separatedBy: ":").last {
+                        return port.trimmingCharacters(in: CharacterSet.whitespaces)
                     }
                 }
             }
@@ -173,7 +173,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     // wraps NSAlert() methods
-    func alert(message: String, information: String) {
+    func alert(_ message: String, information: String) {
         let alert = NSAlert()
         
         alert.messageText = message
@@ -184,114 +184,114 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     
     /* ITEM ACTIONS */
-    @IBAction func startServer(sender: NSMenuItem) {
+    @IBAction func startServer(_ sender: NSMenuItem) {
         startMongod()
     }
    
-    @IBAction func stopServer(sender: NSMenuItem) {
+    @IBAction func stopServer(_ sender: NSMenuItem) {
         stopMongod()
     }
     
-    @IBAction func openPreferences(sender: NSMenuItem) {
+    @IBAction func openPreferences(_ sender: NSMenuItem) {
         self.preferencesWindow!.orderFront(self)
-        NSApplication.sharedApplication().activateIgnoringOtherApps(true)
+        NSApplication.shared().activate(ignoringOtherApps: true)
     }
     
-    @IBAction func browseBinDir(sender: NSButton) {
+    @IBAction func browseBinDir(_ sender: NSButton) {
         binPathTextfield.stringValue = getDir(false, canChooseDirectories: true)
-        defBinDir.setObject(binPathTextfield.stringValue, forKey: "defBinDir")
-        self.binPath = defBinDir.stringForKey("defBinDir")! + mongodFile
+        defBinDir.set(binPathTextfield.stringValue, forKey: "defBinDir")
+        self.binPath = defBinDir.string(forKey: "defBinDir")! + mongodFile
     }
     
-    @IBAction func browseDataDir(sender: NSButton) {
+    @IBAction func browseDataDir(_ sender: NSButton) {
         dataStoreTextfield.stringValue = getDir(false, canChooseDirectories: true)
-        defDataDir.setObject(dataStoreTextfield.stringValue, forKey: "defDataDir")
-        self.dataPath = defDataDir.stringForKey("defDataDir")!
+        defDataDir.set(dataStoreTextfield.stringValue, forKey: "defDataDir")
+        self.dataPath = defDataDir.string(forKey: "defDataDir")!
     }
     
-    @IBAction func browseConfigDir(sender: NSButton) {
+    @IBAction func browseConfigDir(_ sender: NSButton) {
         configFileTextfield.stringValue = getDir(true, canChooseDirectories: false)
-        configFileDir.setObject(configFileTextfield.stringValue, forKey: "configFileDir")
-        self.configPath = configFileDir.stringForKey("configFileDir")!
+        configFileDir.set(configFileTextfield.stringValue, forKey: "configFileDir")
+        self.configPath = configFileDir.string(forKey: "configFileDir")!
         
-        configFileCheckBox.enabled = true
+        configFileCheckBox.isEnabled = true
     }
     
-    @IBAction func useConfigurationFile(sender: NSButton) {
+    @IBAction func useConfigurationFile(_ sender: NSButton) {
         if configFileCheckBox.state == NSOnState {
-            useConfigFile.setBool(true, forKey: "useConfigFile")
+            useConfigFile.set(true, forKey: "useConfigFile")
         } else if (configFileCheckBox.state == NSOffState) {
-            useConfigFile.setBool(false, forKey: "useConfigFile")
+            useConfigFile.set(false, forKey: "useConfigFile")
         }
         useConfigFile.synchronize()
     }
     
-    @IBAction func resetPreferences(sender: NSButton) {
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("defDataDir")
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("defBinDir")
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("configFileDir")
-        NSUserDefaults.standardUserDefaults().removeObjectForKey("useConfigFile")
+    @IBAction func resetPreferences(_ sender: NSButton) {
+        UserDefaults.standard.removeObject(forKey: "defDataDir")
+        UserDefaults.standard.removeObject(forKey: "defBinDir")
+        UserDefaults.standard.removeObject(forKey: "configFileDir")
+        UserDefaults.standard.removeObject(forKey: "useConfigFile")
         dataStoreTextfield.stringValue = ""
         binPathTextfield.stringValue = ""
         configFileTextfield.stringValue = ""
-        configFileCheckBox.enabled = false
-        NSUserDefaults.standardUserDefaults().synchronize()
+        configFileCheckBox.isEnabled = false
+        UserDefaults.standard.synchronize()
     }
     
     
-    @IBAction func openAbout(sender: NSMenuItem) {
-        NSApplication.sharedApplication().orderFrontStandardAboutPanel(sender)
-        NSApplication.sharedApplication().activateIgnoringOtherApps(true)
+    @IBAction func openAbout(_ sender: NSMenuItem) {
+        NSApplication.shared().orderFrontStandardAboutPanel(sender)
+        NSApplication.shared().activate(ignoringOtherApps: true)
     }
     
-    @IBAction func openDoc(sender: NSMenuItem) {
-        if let url: NSURL = NSURL(string: "https://github.com/gmontalvoriv/mongod-starter") {
-            NSWorkspace.sharedWorkspace().openURL(url)
+    @IBAction func openDoc(_ sender: NSMenuItem) {
+        if let url: URL = URL(string: "https://github.com/gmontalvoriv/mongod-starter") {
+            NSWorkspace.shared().open(url)
         }
     }
     
-    @IBAction func openIssues(sender: NSMenuItem) {
-        if let url: NSURL = NSURL(string: "https://github.com/gmontalvoriv/mongod-starter/issues") {
-            NSWorkspace.sharedWorkspace().openURL(url)
+    @IBAction func openIssues(_ sender: NSMenuItem) {
+        if let url: URL = URL(string: "https://github.com/gmontalvoriv/mongod-starter/issues") {
+            NSWorkspace.shared().open(url)
         }
     }
     
-    @IBAction func quit(sender: NSMenuItem) {
-        NSApplication.sharedApplication().terminate(sender)
+    @IBAction func quit(_ sender: NSMenuItem) {
+        NSApplication.shared().terminate(sender)
     }
     
     /* LAUNCH AND TERMINATION EVENTS */
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         self.preferencesWindow!.orderOut(self)
         
-        if self.useConfigFile.boolForKey("useConfigFile") == true {
+        if self.useConfigFile.bool(forKey: "useConfigFile") == true {
             configFileCheckBox.state = NSOnState
         } else {
             configFileCheckBox.state = NSOffState
         }
         
-        if defDataDir.stringForKey("defDataDir") != nil {
-            let customDataDirectory = defDataDir.stringForKey("defDataDir")!
+        if defDataDir.string(forKey: "defDataDir") != nil {
+            let customDataDirectory = defDataDir.string(forKey: "defDataDir")!
             dataStoreTextfield.stringValue = customDataDirectory
         }
         
-        if defBinDir.stringForKey("defBinDir") != nil {
-            let customBinDirectory = defBinDir.stringForKey("defBinDir")!
+        if defBinDir.string(forKey: "defBinDir") != nil {
+            let customBinDirectory = defBinDir.string(forKey: "defBinDir")!
             binPathTextfield.stringValue = customBinDirectory
         }
         
-        if configFileDir.stringForKey("configFileDir") != nil {
-            let configFileDirectory = configFileDir.stringForKey("configFileDir")!
+        if configFileDir.string(forKey: "configFileDir") != nil {
+            let configFileDirectory = configFileDir.string(forKey: "configFileDir")!
             configFileTextfield.stringValue = configFileDirectory
             
-            configFileCheckBox.enabled = true
+            configFileCheckBox.isEnabled = true
         }
         
         let icon = NSImage(named: "statusIcon")
-        icon?.template = true
+        icon?.isTemplate = true
         icon!.size = NSSize(width: 13.3, height: 18.3)
         
-        if let version = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as! String? {
+        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String? {
             statusItem.toolTip = "mongod-starter \(version)"
         }
         
@@ -301,8 +301,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     
-    func applicationWillTerminate(notification: NSNotification) {
-        if (self.startServerMenuItem.hidden == false) {
+    func applicationWillTerminate(_ notification: Notification) {
+        if (self.startServerMenuItem.isHidden == false) {
             return
         }
         
