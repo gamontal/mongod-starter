@@ -92,6 +92,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self.serverStatusMenuItem.title = "Running on Port 27017"
             }
             
+            // Update status icon to active
+            let icon = NSImage(named: "statusIconActive")
+            icon?.isTemplate = false
+            icon!.size = NSSize(width: 13.3, height: 18.3)
+            statusItem.image = icon
+            
             self.task.standardOutput = self.pipe
     
             self.serverStatusMenuItem.isHidden = false
@@ -108,6 +114,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         print("-> SHUTTING DOWN MONGOD")
         
         task.terminate()
+        
+        
+        // Update status icon to inactive
+        let icon = NSImage(named: "statusIcon")
+        icon?.isTemplate = false
+        icon!.size = NSSize(width: 13.3, height: 18.3)
+        statusItem.image = icon
         
         self.serverStatusMenuItem.isHidden = true
         self.startServerMenuItem.isHidden = false
@@ -288,7 +301,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         let icon = NSImage(named: "statusIcon")
-        icon?.isTemplate = true
+        icon?.isTemplate = false
         icon!.size = NSSize(width: 13.3, height: 18.3)
         
         if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String? {
