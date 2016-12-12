@@ -117,7 +117,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         
         // Update status icon to inactive
-        let icon = NSImage(named: "statusIcon")
+        let appearance = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") ?? "Light"
+        var icon = NSImage(named: "statusIcon")
+        if appearance == "Dark" {
+            icon = NSImage(named: "statusIconDark")
+        }
         icon?.isTemplate = false
         icon!.size = NSSize(width: 13.3, height: 18.3)
         statusItem.image = icon
@@ -300,7 +304,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             configFileCheckBox.isEnabled = true
         }
         
-        let icon = NSImage(named: "statusIcon")
+        let appearance = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") ?? "Light"
+        var icon = NSImage(named: "statusIcon")
+        if appearance == "Dark" {
+            icon = NSImage(named: "statusIconDark")
+        }
         icon?.isTemplate = false
         icon!.size = NSSize(width: 13.3, height: 18.3)
         
@@ -311,6 +319,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.length = 27
         statusItem.image = icon
         statusItem.menu = statusMenu
+        
+        DistributedNotificationCenter.default.addObserver(self, selector: #selector(interfaceModeChanged(sender:)), name: NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification"), object: nil)
     }
     
     
@@ -320,5 +330,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
         
         stopMongod() // makes sure the server shuts down before quitting the application
+    }
+    
+    func interfaceModeChanged(sender: NSNotification) {
+        if(!self.startServerMenuItem.isHidden) {
+            let appearance = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") ?? "Light"
+            var icon = NSImage(named: "statusIcon")
+            if appearance == "Dark" {
+                icon = NSImage(named: "statusIconDark")
+            }
+            icon?.isTemplate = false
+            icon!.size = NSSize(width: 13.3, height: 18.3)
+            statusItem.image = icon
+        }
     }
 }
